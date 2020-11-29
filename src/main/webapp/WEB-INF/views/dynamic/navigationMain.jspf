@@ -14,16 +14,16 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Restauracje</a>
+                    <a class="nav-link" href='<c:url value="#"/>'>Restauracje</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Nowa restauracja</a>
+                    <a class="nav-link" href='<c:url value="#"/>'>Nowa restauracja</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Profil</a>
+                    <a class="nav-link" href='<c:url value="#"/>'>Profil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Zaloguj</a>
+                    <a class="nav-link" href='<c:url value="#"/>'>Zaloguj</a>
                 </li>
             </ul>
         </div>
@@ -31,7 +31,7 @@
 </nav>
 
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('img/banerimg.png')">
+<header class="masthead" style="background-image: url('<c:url value="/resources/img/banerimg.png"/>')">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
