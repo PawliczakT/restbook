@@ -16,7 +16,7 @@
 
             <hr>
             <div style="font-size: 90%" class="shadow-sm bg-light rounded post-preview col-12">
-                <a href='<c:url value="restaurants/restaurant.jsp"/>'>
+                <a href='<c:url value="/allRestaurants/{id}"/>'>
                     <div style="float: left" class="col-lg-4 p-1">
                         <img style="width: 90%; height: 100%; align-content: center;"
                              src='<c:url value="/resources/img/restaurant-img.jpg"/>'/>
