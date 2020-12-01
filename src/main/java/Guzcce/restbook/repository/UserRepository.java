@@ -1,10 +1,9 @@
 package Guzcce.restbook.repository;
 
-import Guzcce.restbook.model.Restaurant;
+import Guzcce.restbook.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
-
+public interface UserRepository extends JpaRepository<User, Long> {
 }
