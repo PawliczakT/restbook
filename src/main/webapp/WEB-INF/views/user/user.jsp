@@ -7,7 +7,7 @@
 
 <body>
 
-<%@include file="../dynamic/navigationMain.jspf" %>
+<%@include file="../dynamic/navigationSub.jspf" %>
 
 <!-- Main Content -->
 <div>
@@ -33,7 +33,7 @@
 
 <div class="spacer" style="height: 30px"></div>
 
-<div class="col-lg-8 col-md-8 mx-auto">R
+<div class="col-lg-8 col-md-8 mx-auto">
     <div style="font-size: 90%" class="shadow-sm bg-light rounded post-preview col-12">
 
         <div class="spacer" style="height: 15px"></div>
