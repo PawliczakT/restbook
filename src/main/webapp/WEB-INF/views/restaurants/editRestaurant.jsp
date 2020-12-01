@@ -6,7 +6,7 @@
 
 <body>
 
-<%@include file="../dynamic/navigationMain.jspf" %>
+<%@include file="../dynamic/navigationSub.jspf" %>
 
 <!-- Main Content -->
 <form name="send" method="post" action='<c:url value="/"/>'>

@@ -2,6 +2,7 @@ package Guzcce.restbook.service;
 
 import Guzcce.restbook.model.Restaurant;
 import Guzcce.restbook.repository.RestaurantRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
