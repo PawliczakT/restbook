@@ -7,7 +7,7 @@
 
 <body>
 
-<%@include file="../dynamic/navigationMain.jspf" %>
+<%@include file="../dynamic/navigationSub.jspf" %>
 
 <!-- Main Content -->
 <div class="container">
