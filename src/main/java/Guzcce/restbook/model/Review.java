@@ -16,14 +16,19 @@ public class Review {
     @JoinColumn(name = "user_id")
     private  User user;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "review_id")
+    private  Restaurant restaurant;
+
     public Review() {
     }
 
-    public Review(Long id, User user, String description, float rate) {
+    public Review(Long id, String description, float rate, User user, Restaurant restaurant) {
         this.id = id;
-        this.user = user;
         this.description = description;
         this.rate = rate;
+        this.user = user;
+        this.restaurant = restaurant;
     }
 
     public Long getId() {
@@ -53,6 +58,10 @@ public class Review {
     public void setRate(float rate) {
         this.rate = rate;
     }
+
+    public Restaurant getRestaurant() { return restaurant; }
+
+    public void setRestaurant(Restaurant restaurant) { this.restaurant = restaurant; }
 
     @Override
     public boolean equals(Object o) {

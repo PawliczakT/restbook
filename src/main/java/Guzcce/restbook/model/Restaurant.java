@@ -2,7 +2,9 @@ package Guzcce.restbook.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Restaurant {
@@ -19,7 +21,11 @@ public class Restaurant {
     private boolean verified;
     private LocalDateTime createDate;
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "restaurant")
+    private Set<Review> reviews = new HashSet<>();
 
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "restaurant")
+//    private Set<Cuisine> cuisines = new HashSet<>();
 
     public Restaurant(){
 

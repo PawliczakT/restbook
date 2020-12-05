@@ -2,7 +2,9 @@ package Guzcce.restbook.model;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Cuisine {
@@ -11,6 +13,32 @@ public class Cuisine {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "Cuisine_User",
+            joinColumns = { @JoinColumn(name = "cuisine_id") },
+            inverseJoinColumns = { @JoinColumn(name = "user_id") }
+    )
+    Set<User> users = new HashSet<>();
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "Cuisine_Restaurant",
+            joinColumns = { @JoinColumn(name = "cuisine_id") },
+            inverseJoinColumns = { @JoinColumn(name = "restaurant_id") }
+    )
+    Set<Restaurant> restaurants = new HashSet<>();
+
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "cuisine_user_id")
+//    private Set<User> users = new HashSet<>();
+
+
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "cuisine_id")
+//    private Set<Restaurant> restaurants = new HashSet<>();
 
     public Cuisine() {
     }

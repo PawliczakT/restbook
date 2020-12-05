@@ -18,7 +18,10 @@ public class User {
     private String password;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
-    private Set<Review> reviews = new HashSet<Review>();
+    private Set<Review> reviews = new HashSet<>();
+
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
+//    private Set<Cuisine> cuisines = new HashSet<>();
 
     public User() {
     }
