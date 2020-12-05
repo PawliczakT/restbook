@@ -1,7 +1,7 @@
 package Guzcce.restbook.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -17,7 +17,7 @@ public class Restaurant {
     private String image;
     private float averageRate;
     private boolean verified;
-    private Date createDate;
+    private LocalDateTime createDate;
 
 
 
@@ -25,7 +25,7 @@ public class Restaurant {
 
     }
 
-    public Restaurant(Long id, String name, String phone, String address, String description, String image, float averageRate, boolean verified, Date createDate) {
+    public Restaurant(Long id, String name, String phone, String address, String description, String image, float averageRate, boolean verified, LocalDateTime createDate) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -101,11 +101,11 @@ public class Restaurant {
         this.verified = verified;
     }
 
-    public Date getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 

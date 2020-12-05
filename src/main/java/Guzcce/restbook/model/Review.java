@@ -12,11 +12,16 @@ public class Review {
     private String description;
     private float rate;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private  User user;
+
     public Review() {
     }
 
-    public Review(Long id, String description, float rate) {
+    public Review(Long id, User user, String description, float rate) {
         this.id = id;
+        this.user = user;
         this.description = description;
         this.rate = rate;
     }
@@ -28,6 +33,10 @@ public class Review {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public User getUser() { return user; }
+
+    public void setUser(User user) { this.user = user; }
 
     public String getDescription() {
         return description;
