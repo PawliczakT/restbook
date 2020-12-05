@@ -13,8 +13,8 @@
         <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-                <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                <div class="col-lg-7">
+                <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url('<c:url value="/resources/img/login.png"/>'); background-size: 100%"></div>
+                <div class="col-lg-6">
                     <div class="p-5">
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4" style="font-family: Georgia, serif;">Utwórz konto!</h1>
@@ -43,7 +43,7 @@
 
                         </form>
                         <div class="text-center">
-                            <a class="small" href="login.jsp">Masz już konto? Zaloguj się!</a>
+                            <a class="small" href='<c:url value="/login"/>'>Masz już konto? Zaloguj się!</a>
                         </div>
                     </div>
                 </div>
