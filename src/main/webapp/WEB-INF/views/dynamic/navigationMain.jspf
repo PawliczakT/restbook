@@ -29,7 +29,7 @@
                     <a class="nav-link" href='<c:url value="/user/1"/>'>Profil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href='<c:url value="#"/>'>Zaloguj</a>
+                    <a class="nav-link" href='<c:url value="/login"/>'>Zaloguj</a>
                 </li>
             </ul>
         </div>
