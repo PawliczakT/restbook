@@ -21,7 +21,7 @@
                         </div>
                         <form class="user">
                             <div class="form-group row">
-                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                <div class="col-sm-12">
                                     <input type="text" class="form-control form-control-user" id="exampleUsername" placeholder="Nazwa użytkownika">
                                 </div>
                             </div>
