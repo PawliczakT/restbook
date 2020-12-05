@@ -21,6 +21,7 @@ public class UserController {
     }
 
     //View of selected user
+
     @RequestMapping(value = {"/user/{id}"}, method = RequestMethod.GET)
     public String viewSelectedUser(Model model, @PathVariable String id) {
         model.addAttribute("user", userService.getUser(Long.parseLong(id)));
