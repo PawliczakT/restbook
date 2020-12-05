@@ -1,9 +1,9 @@
 package Guzcce.restbook.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table
 public class Review {
 
     @Id
@@ -43,5 +43,18 @@ public class Review {
 
     public void setRate(float rate) {
         this.rate = rate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Review review = (Review) o;
+        return Objects.equals(id, review.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -13,18 +13,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class UserController {
 
     @Autowired
-    UserRepository userRepository;
+    private final UserRepository userRepository;
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    public UserController(UserRepository userRepository, UserService userService) {
+        this.userRepository = userRepository;
         this.userService = userService;
     }
 
     //View of selected user
 
     @RequestMapping(value = {"/user/{id}"}, method = RequestMethod.GET)
-    public String viewSelectedUser(Model model, @PathVariable String id) {
-        model.addAttribute("user", userService.getUser(Long.parseLong(id)));
+    public String viewSelectedUser(Model model, @PathVariable Long id) {
+        model.addAttribute("user", userService.getUser(id));
         return "user/user";
     }
 }

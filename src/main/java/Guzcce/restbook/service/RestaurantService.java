@@ -6,6 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RestaurantService {
@@ -19,7 +20,7 @@ public class RestaurantService {
         return restaurantRepository.findAll();
     }
 
-    public Restaurant getRestaurant(Long id){
-        return restaurantRepository.findById(id).orElse(null);
+    public Optional<Restaurant> getRestaurant(Long id){
+        return restaurantRepository.findById(id);
     }
 }

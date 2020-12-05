@@ -17,20 +17,18 @@ import java.util.List;
 public class RestaurantController {
 
     @Autowired
-    RestaurantRepository restaurantRepository;
-
-
+    private final RestaurantRepository restaurantRepository;
     private final RestaurantService restaurantService;
 
-
-    public RestaurantController(RestaurantService restaurantService) {
+    public RestaurantController(RestaurantRepository restaurantRepository, RestaurantService restaurantService) {
+        this.restaurantRepository = restaurantRepository;
         this.restaurantService = restaurantService;
     }
 
     //View of selected restaurant
     @RequestMapping(value = {"/allRestaurants/{id}"}, method = RequestMethod.GET)
-    public String viewSelectedRestaurant(Model model, @PathVariable String id) {
-        model.addAttribute("restaurant", restaurantService.getRestaurant(Long.parseLong(id)));
+    public String viewSelectedRestaurant(Model model, @PathVariable Long id) {
+        model.addAttribute("restaurant", restaurantService.getRestaurant(id));
         return "restaurants/restaurant";
     }
 
@@ -52,8 +50,8 @@ public class RestaurantController {
 
     //Get view of editRestaurant page
     @RequestMapping(value = {"/editRestaurant/{id}"}, method = RequestMethod.GET)
-    public String viewEditRestaurants(Model model, @PathVariable String id) {
-        model.addAttribute("restaurant", restaurantService.getRestaurant(Long.parseLong(id)));
+    public String viewEditRestaurants(Model model, @PathVariable Long id) {
+        model.addAttribute("restaurant", restaurantService.getRestaurant(id));
         return "restaurants/editRestaurant";
     }
 

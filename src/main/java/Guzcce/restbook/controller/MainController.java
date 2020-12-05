@@ -16,8 +16,13 @@ import java.util.List;
 public class MainController {
 
     @Autowired
-    RestaurantRepository restaurantRepository;
-    private RestaurantService restaurantService;
+    private final RestaurantRepository restaurantRepository;
+    private final RestaurantService restaurantService;
+
+    public MainController(RestaurantRepository restaurantRepository, RestaurantService restaurantService) {
+        this.restaurantRepository = restaurantRepository;
+        this.restaurantService = restaurantService;
+    }
 
     //View of main page
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
