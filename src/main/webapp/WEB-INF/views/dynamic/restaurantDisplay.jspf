@@ -6,9 +6,12 @@
             <a href="#">
                 <div class="spacer" style="height: 15px"></div>
 
-                <div style="float: left" class="col-lg-4 p-1">
-                    <img style="width: 90%; height: 100%; align-content: center;"
-                         src='<c:url value="/resources/img/restaurant-img.jpg"/>'>
+                <div style="float: left; margin: 10px;
+                        float: left;
+                        height: 150px;
+                        width: 50%;
+                        background-size: cover;
+                        background-image: url('<c:url value="/resources/img/restaurant-img.jpg"/>');" class="col-lg-4 p-1">
                 </div>
 
                 <div style="height: 100%" class="col-12">
