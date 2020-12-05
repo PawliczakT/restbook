@@ -2,7 +2,9 @@ package Guzcce.restbook.model;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -14,6 +16,12 @@ public class User {
     private String email;
     private String login;
     private String password;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
+    private Set<Review> reviews = new HashSet<>();
+
+//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
+//    private Set<Cuisine> cuisines = new HashSet<>();
 
     public User() {
     }
