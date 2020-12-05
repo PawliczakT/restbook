@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class RestaurantController {
@@ -24,8 +25,11 @@ public class RestaurantController {
     //View of selected restaurant
     @RequestMapping(value = {"/allRestaurants/{id}"}, method = RequestMethod.GET)
     public String viewSelectedRestaurant(Model model, @PathVariable Long id) {
-        restaurantService.getRestaurant(id).ifPresent(restaurant -> model.addAttribute("restaurant", restaurant ));
-        return "restaurants/restaurant";
+        Optional<Restaurant> restaurant1 = restaurantService.getRestaurant(id);
+        if (restaurant1.isPresent()) {
+            model.addAttribute("restaurant", restaurant1.get());
+            return "restaurants/restaurant";
+        } else return "restaurants/restaurantNotFound";
     }
 
     //View of all added restaurants
@@ -47,10 +51,11 @@ public class RestaurantController {
     //Get view of editRestaurant page
     @RequestMapping(value = {"/editRestaurant/{id}"}, method = RequestMethod.GET)
     public String viewEditRestaurants(Model model, @PathVariable Long id) {
-        restaurantService.getRestaurant(id).ifPresent(restaurant -> model.addAttribute("restaurant", restaurant));
-        return "restaurants/editRestaurant";
+        Optional<Restaurant> restaurant1 = restaurantService.getRestaurant(id);
+        if (restaurant1.isPresent()) {
+            model.addAttribute("restaurant", restaurant1.get());
+            return "restaurants/editRestaurant";
+        } else return "restaurants/restaurantNotFound";
     }
-
-
 
 }
