@@ -44,7 +44,7 @@
 
                                 </form>
                                 <div class="text-center">
-                                    <a class="small" href="register.jsp">Utwórz konto!</a>
+                                    <a class="small" href='<c:url value="/register"/>'>Utwórz konto!</a>
                                 </div>
                             </div>
                         </div>
