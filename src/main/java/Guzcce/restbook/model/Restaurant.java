@@ -2,9 +2,9 @@ package Guzcce.restbook.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
-@Table
 public class Restaurant {
 
     @Id
@@ -107,5 +107,19 @@ public class Restaurant {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Restaurant that = (Restaurant) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
