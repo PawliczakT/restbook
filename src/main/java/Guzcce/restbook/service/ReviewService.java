@@ -2,6 +2,7 @@ package Guzcce.restbook.service;
 
 import Guzcce.restbook.model.Restaurant;
 import Guzcce.restbook.model.Review;
+import Guzcce.restbook.model.User;
 import Guzcce.restbook.repository.RestaurantRepository;
 import Guzcce.restbook.repository.ReviewRepository;
 import org.springframework.stereotype.Service;
@@ -17,12 +18,12 @@ public class ReviewService {
         this.reviewRepository = reviewRepository;
     }
 
-    public List<Review> findAllByRestaurantAndOrderByReviewDate(){
-        return reviewRepository.findAllByRestaurantAndOrderByReviewDate();
-    }
+//    public List<Review> findByRestaurant_IdAndOrderByReviewDate(long restaurantId){
+//        return reviewRepository.findByRestaurant_IdAndOrderByReviewDate(restaurantId);
+//    }
 
-    public List<Review> findAllByUserAndOrderByReviewDate(){
-        return reviewRepository.findAllByUserAndOrderByReviewDate();
+    public List<Review> findAllByUser_IdAndOrderByReviewDate(User user){
+        return reviewRepository.findReviewsByUserEquals(user);
     }
 
     public Optional<Review> getReview(Long id){
