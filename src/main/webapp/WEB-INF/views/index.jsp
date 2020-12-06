@@ -16,11 +16,9 @@
     <%@include file="dynamic/restaurantDisplay.jspf" %>
 
             <!-- Pager -->
-            <div class="clearfix">
-                <a class="btn btn-primary float-right" href='<c:url value="/allRestaurants"/>'>Zobacz wszystkie &rarr;</a>
+            <div class="clearfix col-10">
+                <a class="btn btn-primary float-right rounded-pill" href='<c:url value="/allRestaurants"/>'>Zobacz wszystkie &rarr;</a>
             </div>
-        </div>
-    </div>
 </div>
 
 <hr>
