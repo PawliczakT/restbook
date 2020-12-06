@@ -27,9 +27,9 @@ public class UserController {
     }
 
     //View of selected user
-    @RequestMapping(value = {"/user/{id}"}, method = RequestMethod.GET)
-    public String viewSelectedUser(Model model, @PathVariable Long id) {
-        Optional<User> user1 = userService.getUser(id);
+    @RequestMapping(value = {"/user/{username}"}, method = RequestMethod.GET)
+    public String viewSelectedUser(Model model, @PathVariable String username) {
+        Optional<User> user1 = userService.getUser(username);
         if(user1.isPresent()){
             model.addAttribute("user", user1.get());
             model.addAttribute("reviews", reviewService.findReviewsByUserEquals(user1.get()));
@@ -46,16 +46,16 @@ public class UserController {
     }
 
     //Delete user
-    @RequestMapping(value = {"/editUser/{id}"}, method = RequestMethod.POST)
-    public RedirectView deleteUser(@PathVariable Long id, @ModelAttribute User user) {
-        userService.deleteUser(id);
+    @RequestMapping(value = {"/editUser/{username}"}, method = RequestMethod.POST)
+    public RedirectView deleteUser(@PathVariable String username, @ModelAttribute User user) {
+        userService.deleteUser(username);
         return new RedirectView("/");
     }
 
     //Save edit user
-    @RequestMapping(value = {"/user/{id}"}, method = RequestMethod.POST)
-    public RedirectView saveEditedUser(@PathVariable Long id, @ModelAttribute User user) {
-        userService.editUser(user, id);
-        return new RedirectView("/user/{id}");
+    @RequestMapping(value = {"/user/{username}"}, method = RequestMethod.POST)
+    public RedirectView saveEditedUser(@PathVariable String username, @ModelAttribute User user) {
+        userService.editUser(user, username);
+        return new RedirectView("/user/{username}");
     }
 }

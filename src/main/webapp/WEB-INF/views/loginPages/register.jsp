@@ -6,7 +6,7 @@
 <%@include file="../dynamic/css.jspf" %>
 
 <body class="bg-gradient-primary">
-<form name="send" method="post" action="<c:url value="/addNewUser"/> ">
+<form name="send" method="post" action="<c:url value="/"/> ">
 <div class="container">
 
     <div class="card o-hidden border-0 shadow-lg my-5">
@@ -23,7 +23,7 @@
 <%--                        <form class="user">--%>
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control form-control-user" id="login" name="login" placeholder="Nazwa użytkownika">
+                                    <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Nazwa użytkownika">
                                 </div>
                             </div>
                             <div class="form-group">
