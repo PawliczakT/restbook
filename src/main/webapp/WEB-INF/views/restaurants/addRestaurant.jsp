@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-3 col-form-label">Dodaj nazwę restauracji:</label>
+                            <label for="name" class="col-3 col-form-label">Nazwa restauracji:</label>
                             <div class="col-4">
                                 <input class="form-control" type="text" id="name" name="name"
                                        placeholder="Wprowadź nazwę restauracji">
@@ -40,7 +40,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="address" class="col-3 col-form-label">Dodaj adres:</label>
+                            <label for="phone" class="col-3 col-form-label">Numer telefonu:</label>
+                            <div class="col-4">
+                                <input class="form-control" type="text" id="phone" name="phone"
+                                       placeholder="+48">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="address" class="col-3 col-form-label">Adres restauracji:</label>
                             <div class="col-6">
                                 <input class="form-control" type="text" id="address" name="address"
                                        placeholder="Wprowadź adres restauracji">
@@ -49,7 +57,7 @@
 
 
                         <div class="form-group row">
-                            <label for="start" class="col-3 col-form-label">Dodaj opis:</label>
+                            <label for="start" class="col-3 col-form-label">Opis:</label>
                             <div class="col-6">
                                         <textarea class="form-control" rows="5" id="start" name="description"
                                                   placeholder="Dodaj opis restauracji"></textarea>
@@ -124,6 +132,7 @@
                             </div>
                         </div>
 
+                        <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />" name="creationDate">
                         <input class="btn btn-info rounded-pill" type="submit" value="Dodaj restaurację"
                                id="sendButton"></input>
                     </div>
