@@ -10,6 +10,7 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String descriptionGood;
     private String descriptionBad;
     private float rate;
@@ -26,6 +27,7 @@ public class Review {
 
     public Review() {
     }
+
 
     public Review(Long id, String descriptionGood, String descriptionBad, float rate, User user, Restaurant restaurant, LocalDateTime reviewDate) {
         this.id = id;

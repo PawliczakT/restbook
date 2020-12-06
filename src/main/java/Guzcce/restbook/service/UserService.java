@@ -1,5 +1,6 @@
 package Guzcce.restbook.service;
 
+import Guzcce.restbook.model.Restaurant;
 import Guzcce.restbook.model.User;
 import Guzcce.restbook.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,29 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    public Optional<User> getUser(Long id){
+    public Optional<User> getUser(Long id) {
         return userRepository.findById(id);
+    }
+
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
+
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+        System.out.println("deleting user on id:" + id);
+    }
+
+    public void editUser(User user, Long id) {
+        User editUser = new User(
+                id,
+                user.getLogin(),
+                user.getEmail(),
+                user.getPassword());
+        userRepository.save(editUser);
     }
 }

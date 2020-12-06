@@ -51,7 +51,7 @@ public class RestaurantController {
 
     //Save restaurant in database
     @RequestMapping(value = {"/addNewRestaurant"}, method = RequestMethod.POST)
-    public RedirectView postAddNewTask(@ModelAttribute Restaurant newRestaurant) {
+    public RedirectView postAddNewRestaurant(@ModelAttribute Restaurant newRestaurant) {
         restaurantService.saveRestaurant(newRestaurant);
         return new RedirectView("/");
     }

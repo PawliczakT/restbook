@@ -26,6 +26,6 @@
 
     <!-- Custom styles for this template -->
     <link href='<c:url value="/resources/css/clean-blog.min.css"/>' rel="stylesheet">
-    <link href='<c:url value="/resources/css/style.css"/>'>
+    <link href='<c:url value="/resources/css/style.css"/>' rel="stylesheet">
 
 </head>

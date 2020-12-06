@@ -24,9 +24,6 @@ public class Restaurant {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "restaurant")
     private Set<Review> reviews = new HashSet<>();
 
-//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "restaurant")
-//    private Set<Cuisine> cuisines = new HashSet<>();
-
     public Restaurant(){
 
     }
