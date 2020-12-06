@@ -21,10 +21,12 @@
                         <div class="form-group row">
                             <label for="picture" class="col-3 col-form-label">Dodaj zdjęcie:</label>
                             <div class="col-4">
-                                <div>
-                                    <form action="..." enctype="multipart/form-data">
-                                        <input type="file" name="image">
-                                    </form>
+
+
+                                <div class="custom-file">
+                                    <label class="btn-sm btn-info custom-file-label" for="customFileLang">Wybierz pliki</label>
+                                    <input type="file" class="custom-file-input" id="customFileLang" lang="pl-Pl">
+
                                 </div>
                             </div>
                         </div>
@@ -57,7 +59,7 @@
 
 
                             <!-- Button trigger modal -->
-                            <button type="button" class=" btn btn-primary rounded col-3" data-toggle="modal"
+                            <button type="button" class="p-2 btn btn-primary rounded-pill col-3" data-toggle="modal"
                                     data-target="#addCuisineModal">
                                 Dodaj rodzaje kuchni
                             </button>
@@ -69,7 +71,7 @@
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             <h4 class="modal-title">
-                                                <center>Rodzaje kuchni</center>
+                                                Rodzaje kuchni
                                             </h4>
                                         </div>
                                         <div class="modal-body">
@@ -96,55 +98,39 @@
                                             </button>
                                         </div>
 
-
                                         <div class="modal-body col-12 align-self-center">
                                             <div class="row col-12">
+                                                <c:forEach items="${cuisine}" var="cuisine">
+                                                    <div class="p-1 btn-group-toggle col-4" data-toggle="buttons">
+                                                        <label class="p-2 btn btn-outline-info rounded-pill col-12">
+                                                            <input style="" type="checkbox"
+                                                                   autocomplete="off">${cuisine.name}
+                                                        </label>
+                                                    </div>
+                                                </c:forEach>
 
-                                                <div class="p-1 btn-group-toggle col-3" data-toggle="buttons">
-                                                    <label class="p- btn btn-outline-info rounded">
-                                                        <input style="" type="checkbox" autocomplete="off">Amerykańska
-                                                    </label>
-                                                </div>
-                                                <div class="p-1 btn-group-toggle col-3" data-toggle="buttons">
-                                                    <label class="p- btn btn-outline-info rounded">
-                                                        <input style="" type="checkbox" autocomplete="off">Amerykańska
-                                                    </label>
-                                                </div>
-                                                <div class="p-1 btn-group-toggle col-3" data-toggle="buttons">
-                                                    <label class="p- btn btn-outline-info rounded">
-                                                        <input style="" type="checkbox" autocomplete="off">Amerykańska
-                                                    </label>
-                                                </div>
-                                                <div class="p-1 btn-group-toggle col-3" data-toggle="buttons">
-                                                    <label class="p- btn btn-outline-info rounded">
-                                                        <input style="" type="checkbox" autocomplete="off">Amerykańska
-                                                    </label>
-                                                </div>
                                             </div>
                                         </div>
 
 
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary rounded"
+                                            <button type="button" class="p-2 btn btn-info rounded-pill">Dodaj</button>
+                                            <button type="button" class="p-2 btn btn-secondary rounded-pill"
                                                     data-dismiss="modal">Zamknij
                                             </button>
-                                            <button type="button" class="btn btn-info rounded">Dodaj</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
 
-                        <input class="btn btn-info rounded" type="submit" value="Dodaj restaurację"
+                        <input class="btn btn-info rounded-pill" type="submit" value="Dodaj restaurację"
                                id="sendButton"></input>
                     </div>
-
                 </div>
             </div>
         </div>
-
+    </div>
 
         <!-- /.container-fluid -->
 </form>
