@@ -1,6 +1,7 @@
 package Guzcce.restbook.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -19,6 +20,8 @@ public class Review {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "review_id")
     private  Restaurant restaurant;
+
+    private LocalDateTime reviewDate;
 
     public Review() {
     }

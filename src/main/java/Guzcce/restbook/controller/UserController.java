@@ -2,6 +2,7 @@ package Guzcce.restbook.controller;
 
 
 import Guzcce.restbook.model.User;
+import Guzcce.restbook.service.ReviewService;
 import Guzcce.restbook.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +16,11 @@ import java.util.Optional;
 public class UserController {
 
     private final UserService userService;
+    private final ReviewService reviewService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ReviewService reviewService) {
         this.userService = userService;
+        this.reviewService = reviewService;
     }
 
     //View of selected user
@@ -27,6 +30,7 @@ public class UserController {
         Optional<User> user1 = userService.getUser(id);
         if(user1.isPresent()){
             model.addAttribute("user", user1.get());
+            model.addAttribute("reviews", reviewService.findAllByUserAndOrderByReviewDate());
             return "user/user";
         }
         else return "user/userNotFound";
