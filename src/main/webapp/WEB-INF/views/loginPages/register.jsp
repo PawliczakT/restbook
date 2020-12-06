@@ -6,7 +6,7 @@
 <%@include file="../dynamic/css.jspf" %>
 
 <body class="bg-gradient-primary">
-<form name="send" method="post" action="<c:url value="/"/> ">
+<form name="send" method="post" action="<c:url value="/addNewUser"/> ">
 <div class="container">
 
     <div class="card o-hidden border-0 shadow-lg my-5">

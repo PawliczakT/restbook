@@ -1,7 +1,8 @@
 package Guzcce.restbook.service;
 
-import Guzcce.restbook.model.Restaurant;
+import Guzcce.restbook.model.Role;
 import Guzcce.restbook.model.User;
+import Guzcce.restbook.repository.RoleRepository;
 import Guzcce.restbook.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,9 +15,12 @@ import java.util.Optional;
 @Service
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
-    public UserService(UserRepository userRepository) {
+
+    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     public List<User> getAllUsers() {
@@ -28,6 +32,8 @@ public class UserService implements UserDetailsService {
     }
 
     public User saveUser(User user) {
+        Optional<Role> byId = roleRepository.findById(1L);
+        byId.ifPresent(user::setRole);
         return userRepository.save(user);
     }
 
