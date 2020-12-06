@@ -19,13 +19,13 @@
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <div class="form-group row">
-                            <label for="picture" class="col-3 col-form-label">Dodaj zdjęcie:</label>
+                            <label for="image" class="col-3 col-form-label">Dodaj zdjęcie:</label>
                             <div class="col-4">
 
 
                                 <div class="custom-file">
-                                    <label class="btn-sm btn-info custom-file-label" for="customFileLang">Wybierz pliki</label>
-                                    <input type="file" class="custom-file-input" id="customFileLang" lang="pl-Pl">
+                                    <label class="btn-sm btn-info custom-file-label" for="image">Wybierz pliki</label>
+                                    <input type="file" class="custom-file-input" id="image" name="image" lang="pl-Pl">
 
                                 </div>
                             </div>
