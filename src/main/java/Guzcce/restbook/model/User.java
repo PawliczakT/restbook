@@ -12,25 +12,20 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
-    private String email;
     private String login;
+    private String email;
     private String password;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Review> reviews = new HashSet<>();
 
-//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
-//    private Set<Cuisine> cuisines = new HashSet<>();
-
     public User() {
     }
 
-    public User(Long id, String name, String email, String login, String password) {
+    public User(Long id, String login, String email, String password) {
         this.id = id;
-        this.name = name;
-        this.email = email;
         this.login = login;
+        this.email = email;
         this.password = password;
     }
 
@@ -40,14 +35,6 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getEmail() {
