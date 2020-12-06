@@ -5,16 +5,17 @@ import Guzcce.restbook.model.Restaurant;
 import Guzcce.restbook.service.RestaurantService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class RestaurantController {
-
 
     private final RestaurantService restaurantService;
 
@@ -47,6 +48,14 @@ public class RestaurantController {
         model.addAttribute("restaurant", list);
         return "restaurants/addRestaurant";
     }
+
+    //Save restaurant in database
+    @RequestMapping(value = {"/addNewRestaurant"}, method = RequestMethod.POST)
+    public RedirectView postAddNewTask(@ModelAttribute Restaurant newRestaurant) {
+        restaurantService.saveRestaurant(newRestaurant);
+        return new RedirectView("/");
+    }
+
 
     //Get view of editRestaurant page
     @RequestMapping(value = {"/editRestaurant/{id}"}, method = RequestMethod.GET)
