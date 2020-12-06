@@ -23,7 +23,7 @@
 <%--                        <form class="user">--%>
                             <div class="form-group row">
                                 <div class="col-sm-12">
-                                    <input type="text" class="form-control form-control-user" id="login" name="login" placeholder="Nazwa użytkownika">
+                                    <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Nazwa użytkownika">
                                 </div>
                             </div>
                             <div class="form-group">

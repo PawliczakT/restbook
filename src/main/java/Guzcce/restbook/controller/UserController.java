@@ -1,10 +1,10 @@
 package Guzcce.restbook.controller;
 
 
-import Guzcce.restbook.model.Restaurant;
 import Guzcce.restbook.model.User;
 import Guzcce.restbook.service.ReviewService;
 import Guzcce.restbook.service.UserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,16 +20,18 @@ public class UserController {
 
     private final UserService userService;
     private final ReviewService reviewService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService, ReviewService reviewService) {
+    public UserController(UserService userService, ReviewService reviewService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.reviewService = reviewService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     //View of selected user
-    @RequestMapping(value = {"/user/{id}"}, method = RequestMethod.GET)
-    public String viewSelectedUser(Model model, @PathVariable Long id) {
-        Optional<User> user1 = userService.getUser(id);
+    @RequestMapping(value = {"/user/{username}"}, method = RequestMethod.GET)
+    public String viewSelectedUser(Model model, @PathVariable String username) {
+        Optional<User> user1 = userService.getUser(username);
         if(user1.isPresent()){
             model.addAttribute("user", user1.get());
             model.addAttribute("reviews", reviewService.findReviewsByUserEquals(user1.get()));
@@ -41,21 +43,22 @@ public class UserController {
     //Save user in database
     @RequestMapping(value = {"/addNewUser"}, method = RequestMethod.POST)
     public RedirectView postAddNewUser(@ModelAttribute User newUser) {
+        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         userService.saveUser(newUser);
         return new RedirectView("/");
     }
 
     //Delete user
-    @RequestMapping(value = {"/editUser/{id}"}, method = RequestMethod.POST)
-    public RedirectView deleteUser(@PathVariable Long id, @ModelAttribute User user) {
-        userService.deleteUser(id);
+    @RequestMapping(value = {"/editUser/{username}"}, method = RequestMethod.POST)
+    public RedirectView deleteUser(@PathVariable String username, @ModelAttribute User user) {
+        userService.deleteUser(username);
         return new RedirectView("/");
     }
 
     //Save edit user
-    @RequestMapping(value = {"/user/{id}"}, method = RequestMethod.POST)
-    public RedirectView saveEditedUser(@PathVariable Long id, @ModelAttribute User user) {
-        userService.editUser(user, id);
-        return new RedirectView("/user/{id}");
+    @RequestMapping(value = {"/user/{username}"}, method = RequestMethod.POST)
+    public RedirectView saveEditedUser(@PathVariable String username, @ModelAttribute User user) {
+        userService.editUser(user, username);
+        return new RedirectView("/user/{username}");
     }
 }

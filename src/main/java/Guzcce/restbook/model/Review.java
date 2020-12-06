@@ -1,7 +1,6 @@
 package Guzcce.restbook.model;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -10,33 +9,24 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private String descriptionGood;
-    private String descriptionBad;
+    private String description;
     private float rate;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
     private  User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "review_id")
     private  Restaurant restaurant;
-
-    private LocalDateTime reviewDate;
 
     public Review() {
     }
 
-
-    public Review(Long id, String descriptionGood, String descriptionBad, float rate, User user, Restaurant restaurant, LocalDateTime reviewDate) {
+    public Review(Long id, String description, float rate, User user, Restaurant restaurant) {
         this.id = id;
-        this.descriptionGood = descriptionGood;
-        this.descriptionBad = descriptionBad;
+        this.description = description;
         this.rate = rate;
         this.user = user;
         this.restaurant = restaurant;
-        this.reviewDate = reviewDate;
     }
 
     public Long getId() {
@@ -51,28 +41,12 @@ public class Review {
 
     public void setUser(User user) { this.user = user; }
 
-    public String getDescriptionGood() {
-        return descriptionGood;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescriptionGood(String descriptionGood) {
-        this.descriptionGood = descriptionGood;
-    }
-
-    public String getDescriptionBad() {
-        return descriptionBad;
-    }
-
-    public void setDescriptionBad(String descriptionBad) {
-        this.descriptionBad = descriptionBad;
-    }
-
-    public LocalDateTime getReviewDate() {
-        return reviewDate;
-    }
-
-    public void setReviewDate(LocalDateTime reviewDate) {
-        this.reviewDate = reviewDate;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public float getRate() {

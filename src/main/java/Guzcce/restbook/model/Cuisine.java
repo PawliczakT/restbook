@@ -19,7 +19,7 @@ public class Cuisine {
     @JoinTable(
             name = "Cuisine_User",
             joinColumns = { @JoinColumn(name = "cuisine_id") },
-            inverseJoinColumns = { @JoinColumn(name = "user_id") }
+            inverseJoinColumns = { @JoinColumn(name = "user_username") }
     )
     Set<User> users = new HashSet<>();
 
