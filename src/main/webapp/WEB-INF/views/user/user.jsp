@@ -33,100 +33,93 @@
 
 <div class="spacer" style="height: 30px"></div>
 
-<div class="col-lg-8 col-md-8 mx-auto">
-    <div style="font-size: 90%" class="shadow-sm bg-light rounded post-preview col-12">
+<c:forEach items="${review}" var="review">
+    <div class="col-lg-8 col-md-8 mx-auto">
+        <div style="font-size: 90%" class="shadow-sm bg-light rounded post-preview col-12">
+            <a href="#">
+                <div class="spacer" style="height: 15px"></div>
 
-        <div class="spacer" style="height: 15px"></div>
+                <div style="
+                        margin: 10px;
+                        float: left;
+                        height: 150px;
+                        width: 50%;
+                        background-size: cover;
+                        background-image: url('<c:url value="../../../resources/img/rest1.jpg"/>');"
+                     class="col-lg-4 p-1">
+                </div>
 
-        <div style="float: left" class="col-lg-4 p-1">
-            <img style="width: 90%; height: 100%; align-content: center;"
-                 src="../../../resources/img/restaurant-img.jpg">
-        </div>
-        <a href="#">
-            <div style="height: 100%" class="col-12">
-                <h2 style="font-size: 130%" class="post-title">
-                    !RESTAURANT NAME
-                </h2>
-            </div>
-        </a>
-        <div style="height: 100%" class="col-12">
+                <div style="height: 100%" class="col-12">
+                    <h2 style="font-size: 130%" class="post-title">
+                            ${review.getRestaurant().getName()}
+                    </h2>
+                </div>
 
-            <h3 style="font-size: 100%" class="post-subtitle">
-                <br>Na plus:
-            </h3>
-            <h8 style="font-size: 100%" class="post-subtitle">no zajebista knajpka, zajebista, dobre majo jedzono i
-                super przaśny klimat we lokalu. uguem git i naprawdę można się najeść porcje są mega duże i kelnerki
-                ładne <br> <br></h8>
-            <h3 style="font-size: 100%" class="post-subtitle">
-                Na minus:
-            </h3>
-            <h8 style="font-size: 100%" class="post-subtitle">dalek het na jakimś wygwizdowie i podajo na kartonowych
-                papiurach zamiast na normalnych talerzach, kto to widział takie dziwy w xxi wieku odjaniepawlać, i
-                jeszcze cza puacić jak za zboże, dobre jedzono bo dobre ale za takie pieniondze to ja se moglbym cauom
-                krowe kupic i oporzondzic
-            </h8>
-
-
-            <div>
-                <p>Ocena: 4,5
-                    <i class="fas fa-star" style="color:gold"></i>
-                    <i class="fas fa-star" style="color:gold"></i>
-                    <i class="fas fa-star" style="color:gold"></i>
-                    <i class="fas fa-star" style="color:gold"></i>
-                    <i class="fa fa-star-half" style="color:gold"></i>
-                    <br> <br>
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="col-lg-8 col-md-8 mx-auto">
-    <div style="font-size: 90%" class="shadow-sm bg-light rounded post-preview col-12">
-
-        <div class="spacer" style="height: 15px"></div>
-
-        <div style="float: left" class="col-lg-4 p-1">
-            <img style="width: 90%; height: 100%; align-content: center;"
-                 src="../../../resources/img/restaurant-img.jpg">
-        </div>
-        <a href="#">
-            <div style="height: 100%" class="col-12">
-                <h2 style="font-size: 130%" class="post-title">
-                    !RESTAURANT NAME
-                </h2>
-            </div>
-        </a>
-        <div style="height: 100%" class="col-12">
-
-            <h3 style="font-size: 100%" class="post-subtitle">
-                <br>Na plus:
-            </h3>
-            <h8 style="font-size: 100%" class="post-subtitle">no zajebista knajpka, zajebista, dobre majo jedzono i
-                super przaśny klimat we lokalu. uguem git i naprawdę można się najeść porcje są mega duże i kelnerki
-                ładne <br> <br></h8>
-            <h3 style="font-size: 100%" class="post-subtitle">
-                Na minus:
-            </h3>
-            <h8 style="font-size: 100%" class="post-subtitle">dalek het na jakimś wygwizdowie i podajo na kartonowych
-                papiurach zamiast na normalnych talerzach, kto to widział takie dziwy w xxi wieku odjaniepawlać, i
-                jeszcze cza puacić jak za zboże, dobre jedzono bo dobre ale za takie pieniondze to ja se moglbym cauom
-                krowe kupic i oporzondzic
-            </h8>
-
-
-            <div>
-                <p>Ocena: 4,5
-                    <i class="fas fa-star" style="color:gold"></i>
-                    <i class="fas fa-star" style="color:gold"></i>
-                    <i class="fas fa-star" style="color:gold"></i>
-                    <i class="fas fa-star" style="color:gold"></i>
-                    <i class="fa fa-star-half" style="color:gold"></i>
-                    <br> <br>
-                </p>
-            </div>
+                <div style="height: 100%" class="col-12">
+                    <h3>Na plus:</h3>
+                    <h6 style="font-size: 100%" class="post-subtitle">${review.getDescriptionGood}</h6>
+                    <h3>Na plus:</h3>
+                    <h6 style="font-size: 100%" class="post-subtitle">${review.getDescriptionBad}<br> <br></h6>
+                    <div>
+                        <p>Ocena: ${review.getRate()}
+                            <c:if test="${review.getRate() > 0 && review.getRate() <= 0.75}">
+                                <i class="fa fa-star-half" style="color:gold"></i>
+                            </c:if>
+                            <c:if test="${review.getRate() > 0.75 && review.getRate() <= 1.25}">
+                                <i class="fas fa-star" style="color:gold"></i>
+                            </c:if>
+                            <c:if test="${review.getRate() > 1.25 && review.getRate() <= 1.75}">
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fa fa-star-half" style="color:gold"></i>
+                            </c:if>
+                            <c:if test="${review.getRate() > 1.75 && review.getRate() <= 2.25}">
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                            </c:if>
+                            <c:if test="${review.getRate() > 2.25 && review.getRate() <= 2.75}">
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fa fa-star-half" style="color:gold"></i>
+                            </c:if>
+                            <c:if test="${review.getRate() > 2.75 && review.getRate() <= 3.25}">
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                            </c:if>
+                            <c:if test="${review.getRate() > 3.25 && review.getRate() <= 3.75}">
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fa fa-star-half" style="color:gold"></i>
+                            </c:if>
+                            <c:if test="${review.getRate() > 3.75 && review.getRate() <= 4.25}">
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                            </c:if>
+                            <c:if test="${review.getRate() > 4.25 && review.getRate() <= 4.75}">
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fa fa-star-half" style="color:gold"></i>
+                            </c:if>
+                            <c:if test="${review.getRate() > 4.75 && review.getRate() <= 5}">
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                            </c:if>
+                            <br> <br>
+                        </p>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
-</div>
+</c:forEach>
 
 <%@include file="../dynamic/board.jspf" %>
 
