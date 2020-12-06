@@ -19,11 +19,16 @@ public class RestaurantService {
     public List<Restaurant> getAllRestaurants(){
         return restaurantRepository.findAll();
     }
+
     public List<Restaurant> findTop5ByOrderByAverageRateDesc(){
         return restaurantRepository.findTop5ByOrderByAverageRateDesc();
     }
 
     public Optional<Restaurant> getRestaurant(Long id){
         return restaurantRepository.findById(id);
+    }
+
+    public Restaurant saveRestaurant(Restaurant restaurant) {
+        return restaurantRepository.save(restaurant);
     }
 }

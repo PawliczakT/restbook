@@ -9,263 +9,141 @@
 <%@include file="../dynamic/navigationSub.jspf" %>
 
 <!-- Main Content -->
-<form name="send" method="post" action='<c:url value="/"/>'>
+<form name="send" method="post" action='<c:url value="/addNewRestaurant"/>'>
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
         <!-- Content Row -->
-        <div class="row">
-            <div class="col-xl-12 col-md-12 mb-12">
+        <div class="row col-12 justify-content-center">
+            <div class="col-9 justify-content-center">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <div class="form-group row">
-                            <label for="picture" class="col-2 col-form-label">Dodaj zdjęcie:</label>
-                            <div class="col-10">
+                            <label for="picture" class="col-3 col-form-label">Dodaj zdjęcie:</label>
+                            <div class="col-4">
                                 <div>
                                     <form action="..." enctype="multipart/form-data">
-                                        <input type="file" name="nazwa">
+                                        <input type="file" name="image">
                                     </form>
                                 </div>
                             </div>
                         </div>
+
                         <div class="form-group row">
-                            <label for="address" class="col-2 col-form-label">Dodaj adres:</label>
-                            <div class="col-10">
-                                <input class="form-control" type="text" id="lastName" name="lastName"
+                            <label for="name" class="col-3 col-form-label">Dodaj nazwę restauracji:</label>
+                            <div class="col-4">
+                                <input class="form-control" type="text" id="name" name="name"
+                                       placeholder="Wprowadź nazwę restauracji">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="address" class="col-3 col-form-label">Dodaj adres:</label>
+                            <div class="col-6">
+                                <input class="form-control" type="text" id="address" name="address"
                                        placeholder="Wprowadź adres restauracji">
                             </div>
                         </div>
 
+
                         <div class="form-group row">
-                            <label for="address" class="col-2 col-form-label">Wybierz rodzaj kuchni:</label>
-                            <div class="col-10">
+                            <label for="start" class="col-3 col-form-label">Dodaj opis:</label>
+                            <div class="col-6">
+                                        <textarea class="form-control" rows="5" id="start" name="description"
+                                                  placeholder="Dodaj opis restauracji"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
 
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                           value="option2">
-                                    <label class="form-check-label" for="inlineCheckbox2">Amerykańska</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Arabska</label>
-                                </div>
 
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                           value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">Bezglutenowe</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                           value="option2">
-                                    <label class="form-check-label" for="inlineCheckbox2">Burgery</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                           value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">Chińskia</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Curry</label>
-                                </div>
+                            <!-- Button trigger modal -->
+                            <button type="button" class=" btn btn-primary rounded col-3" data-toggle="modal"
+                                    data-target="#addCuisineModal">
+                                Dodaj rodzaje kuchni
+                            </button>
 
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1"
-                                           value="option1">
-                                    <label class="form-check-label" for="inlineCheckbox1">Dania na lunch</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2"
-                                           value="option2">
-                                    <label class="form-check-label" for="inlineCheckbox2">Desery</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Drób</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Falafel</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Francuska</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Grecka</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Indyjska</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Japońska</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Kanapki</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Kebab</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Koreańska</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Makarony</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Meksykańska</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Menu dla dzieci</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Międzynarodowa</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Naleśniki</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Owoce morza</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Pierogi</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Pizza</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Polska</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Przekąski</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Ryby</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Sałatki</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Sushi</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Tajska</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Turecka</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Wegańska</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Wegetariańska</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Wieprzowina</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Wietnamska</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Wołowina</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Wrapy</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Włoska</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Zupy</label>
-                                </div>
-                                <div class="form-check form-check-inline col-1">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3"
-                                           value="option3">
-                                    <label class="form-check-label" for="inlineCheckbox3">Śniadania</label>
+
+                            <div id="myModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">
+                                                <center>Rodzaje kuchni</center>
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p id="checkid"></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Zamknij
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                        </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="addCuisineModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="addCuisineModalTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="addCuisineModalTitle">Rodzaje kuchni:</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
 
 
-                        <div class="form-group row">
-                            <label for="start" class="col-2 col-form-label">Dodaj opis:</label>
-                            <div class="col-10">
-                                <textarea class="form-control" rows="5" id="start" name="start"
-                                          placeholder="Dodaj opis restauracji"></textarea>
+                                        <div class="modal-body col-12 align-self-center">
+                                            <div class="row col-12">
+
+                                                <div class="p-1 btn-group-toggle col-3" data-toggle="buttons">
+                                                    <label class="p- btn btn-outline-info rounded">
+                                                        <input style="" type="checkbox" autocomplete="off">Amerykańska
+                                                    </label>
+                                                </div>
+                                                <div class="p-1 btn-group-toggle col-3" data-toggle="buttons">
+                                                    <label class="p- btn btn-outline-info rounded">
+                                                        <input style="" type="checkbox" autocomplete="off">Amerykańska
+                                                    </label>
+                                                </div>
+                                                <div class="p-1 btn-group-toggle col-3" data-toggle="buttons">
+                                                    <label class="p- btn btn-outline-info rounded">
+                                                        <input style="" type="checkbox" autocomplete="off">Amerykańska
+                                                    </label>
+                                                </div>
+                                                <div class="p-1 btn-group-toggle col-3" data-toggle="buttons">
+                                                    <label class="p- btn btn-outline-info rounded">
+                                                        <input style="" type="checkbox" autocomplete="off">Amerykańska
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary rounded"
+                                                    data-dismiss="modal">Zamknij
+                                            </button>
+                                            <button type="button" class="btn btn-info rounded">Dodaj</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
+
                         </div>
 
-
+                        <input class="btn btn-info rounded" type="submit" value="Dodaj restaurację"
+                               id="sendButton"></input>
                     </div>
+
                 </div>
             </div>
         </div>
-        <input class="btn btn-success pull-left" type="submit" value="Wyślij" id="searchButton"></input>
 
 
         <!-- /.container-fluid -->
