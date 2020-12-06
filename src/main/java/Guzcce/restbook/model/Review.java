@@ -1,6 +1,7 @@
 package Guzcce.restbook.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
@@ -9,8 +10,9 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String cons;
-    private String pros;
+
+    private String descriptionGood;
+    private String descriptionBad;
     private float rate;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -21,16 +23,20 @@ public class Review {
     @JoinColumn(name = "review_id")
     private  Restaurant restaurant;
 
+    private LocalDateTime reviewDate;
+
     public Review() {
     }
 
-    public Review(Long id, String cons, String pros, float rate, User user, Restaurant restaurant) {
+
+    public Review(Long id, String descriptionGood, String descriptionBad, float rate, User user, Restaurant restaurant, LocalDateTime reviewDate) {
         this.id = id;
-        this.cons = cons;
-        this.pros = pros;
+        this.descriptionGood = descriptionGood;
+        this.descriptionBad = descriptionBad;
         this.rate = rate;
         this.user = user;
         this.restaurant = restaurant;
+        this.reviewDate = reviewDate;
     }
 
     public Long getId() {
@@ -45,20 +51,28 @@ public class Review {
 
     public void setUser(User user) { this.user = user; }
 
-    public String getCons() {
-        return cons;
+    public String getDescriptionGood() {
+        return descriptionGood;
     }
 
-    public void setCons(String cons) {
-        this.cons = cons;
+    public void setDescriptionGood(String descriptionGood) {
+        this.descriptionGood = descriptionGood;
     }
 
-    public String getPros() {
-        return pros;
+    public String getDescriptionBad() {
+        return descriptionBad;
     }
 
-    public void setPros(String pros) {
-        this.pros = pros;
+    public void setDescriptionBad(String descriptionBad) {
+        this.descriptionBad = descriptionBad;
+    }
+
+    public LocalDateTime getReviewDate() {
+        return reviewDate;
+    }
+
+    public void setReviewDate(LocalDateTime reviewDate) {
+        this.reviewDate = reviewDate;
     }
 
     public float getRate() {
