@@ -14,7 +14,7 @@
     <div class="row">
         <div class="jumbotron">
             <h1 class="display-4">Restauracja Ratuszowa</h1>
-            <img src="img/rest1.jpg" class="img-fluid" alt="Responsive image">
+            <img src="../../../resources/img/rest1.jpg" class="img-fluid" alt="Responsive image">
             <!--
             <table>
                <tr>
@@ -47,14 +47,15 @@
 
             <form>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Co Ci się podoba?</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label for="pros">Co Ci się podoba?</label>
+                    <textarea class="form-control" id="pros" name="pros" rows="3"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Co moglibyśmy poprawić?</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label for="cons">Co moglibyśmy poprawić?</label>
+                    <textarea class="form-control" id="cons" name="cons" rows="3"></textarea>
                 </div>
-                <button type="button" class="btn btn-outline-primary">Wyślij</button>
+                <input class="btn btn-success pull-left"  type="submit" value="Wyślij" id="searchButton"></input>
+<%--                <button type="button" class="btn btn-outline-primary">Wyślij</button>--%>
             </form>
         </div>
 

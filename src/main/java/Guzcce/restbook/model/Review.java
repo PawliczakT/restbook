@@ -9,7 +9,8 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String description;
+    private String cons;
+    private String pros;
     private float rate;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -23,9 +24,10 @@ public class Review {
     public Review() {
     }
 
-    public Review(Long id, String description, float rate, User user, Restaurant restaurant) {
+    public Review(Long id, String cons, String pros, float rate, User user, Restaurant restaurant) {
         this.id = id;
-        this.description = description;
+        this.cons = cons;
+        this.pros = pros;
         this.rate = rate;
         this.user = user;
         this.restaurant = restaurant;
@@ -43,12 +45,20 @@ public class Review {
 
     public void setUser(User user) { this.user = user; }
 
-    public String getDescription() {
-        return description;
+    public String getCons() {
+        return cons;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCons(String cons) {
+        this.cons = cons;
+    }
+
+    public String getPros() {
+        return pros;
+    }
+
+    public void setPros(String pros) {
+        this.pros = pros;
     }
 
     public float getRate() {
