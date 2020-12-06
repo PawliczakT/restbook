@@ -1,7 +1,9 @@
 package Guzcce.restbook.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -19,7 +21,8 @@ public class Restaurant {
     private String image;
     private float averageRate;
     private boolean verified;
-    private LocalDateTime createDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date createDate;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "restaurant")
     private Set<Review> reviews = new HashSet<>();
@@ -28,7 +31,7 @@ public class Restaurant {
 
     }
 
-    public Restaurant(Long id, String name, String phone, String address, String description, String image, float averageRate, boolean verified, LocalDateTime createDate) {
+    public Restaurant(Long id, String name, String phone, String address, String description, String image, float averageRate, boolean verified, Date createDate) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -88,12 +91,12 @@ public class Restaurant {
         this.image = image;
     }
 
-    public float getAverageRate() {
+    public float getRate() {
         return averageRate;
     }
 
-    public void setAverageRate(float averageRate) {
-        this.averageRate = averageRate;
+    public void setRate(float rate) {
+        this.averageRate = rate;
     }
 
     public boolean isVerified() {
@@ -104,11 +107,11 @@ public class Restaurant {
         this.verified = verified;
     }
 
-    public LocalDateTime getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 

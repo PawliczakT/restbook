@@ -13,7 +13,7 @@
 <div class="container">
     <div class="row">
         <div class="jumbotron">
-            <h1 class="display-4">Restauracja Ratuszowa</h1>
+            <h1 class="display-4">${restaurant.name}</h1>
             <img src="../../../resources/img/rest1.jpg" class="img-fluid" alt="Responsive image">
             <!--
             <table>
@@ -25,9 +25,10 @@
             <div class="jumbotron jumbotron-fluid">
                 <div class="onas">
                     <h1 class="display-4">O nas</h1>
-                    <p class="lead">Opis zajebistej restauracji serwujacej jedzenie w cenach umiarkowanych.</p>
+                    <p class="lead">${restaurant.description}</p>
                 </div>
             </div>
+
             <p>Oceń naszą restaurację:</p>
             <form>
                 <div class="rate">
@@ -45,7 +46,7 @@
             </form>
             <br><br><br>
 
-            <form>
+            <form name="send" method="post" action='<c:url value="/allRestaurants/${restaurant.id}"/>'>
                 <div class="form-group">
                     <label for="pros">Co Ci się podoba?</label>
                     <textarea class="form-control" id="pros" name="pros" rows="3"></textarea>
@@ -54,9 +55,50 @@
                     <label for="cons">Co moglibyśmy poprawić?</label>
                     <textarea class="form-control" id="cons" name="cons" rows="3"></textarea>
                 </div>
-                <input class="btn btn-success pull-left"  type="submit" value="Wyślij" id="searchButton"></input>
-<%--                <button type="button" class="btn btn-outline-primary">Wyślij</button>--%>
+                <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />" name="createDate">
+                <input class="btn btn-info rounded-pill" type="submit" value="Dodaj recenzję"
+                       id="sendButton">
+
             </form>
+<c:forEach items="${review}" var="review">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="reviews">
+                    <h1 class="display-4">Nazwa użytkownika dającego recenzję</h1>
+                    <p class="lead">Data dodania: ${review.createDate}</p>
+                    <p class="lead">Plusy: ${review.pros}</p>
+                    <p class="lead">Minusy: ${review.cons}</p>
+                    <div>
+                        <p>Ocena: ${review.rate}
+                            <c:if test="${review.rate > 0 && review.rate <= 1}">
+                            <i class="fas fa-star" style="color:gold"></i>
+                            </c:if>
+                            <c:if test="${review.rate > 1 && restaurant.rate <= 2}">
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                            </c:if>
+                            <c:if test="${review.rate > 2 && review.rate <= 3}">
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                            </c:if>
+                            <c:if test="${review.rate > 3 && review.rate <= 4}">
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                            </c:if>
+                            <c:if test="${review.rate > 4.75 && review.rate <= 5}">
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                            </c:if>
+                </div>
+            </div>
+</c:forEach>
+
+
         </div>
 
     </div>
