@@ -22,7 +22,7 @@ public class ReviewService {
 //        return reviewRepository.findByRestaurant_IdAndOrderByReviewDate(restaurantId);
 //    }
 
-    public List<Review> findAllByUser_IdAndOrderByReviewDate(User user){
+    public List<Review> findReviewsByUserEquals(User user){
         return reviewRepository.findReviewsByUserEquals(user);
     }
 

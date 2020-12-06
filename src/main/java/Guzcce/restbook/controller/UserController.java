@@ -32,7 +32,7 @@ public class UserController {
         Optional<User> user1 = userService.getUser(id);
         if(user1.isPresent()){
             model.addAttribute("user", user1.get());
-            model.addAttribute("reviews", reviewService.findAllByUserAndOrderByReviewDate());
+            model.addAttribute("reviews", reviewService.findReviewsByUserEquals(user1.get()));
             return "user/user";
         }
         else return "user/userNotFound";
