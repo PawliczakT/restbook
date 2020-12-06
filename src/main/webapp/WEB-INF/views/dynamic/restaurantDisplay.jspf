@@ -6,7 +6,8 @@
             <a href="#">
                 <div class="spacer" style="height: 15px"></div>
 
-                <div style="float: left; margin: 10px;
+                <div style="
+                        margin: 10px;
                         float: left;
                         height: 150px;
                         width: 50%;
