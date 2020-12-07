@@ -11,23 +11,24 @@
 <!-- Main Content -->
 <form name="send" method="post" action='<c:url value="/addNewRestaurant"/>'>
     <!-- Begin Page Content -->
-    <div class="container-fluid">
+    <div class="container">
 
         <!-- Content Row -->
         <div class="row col-12 justify-content-center">
-            <div class="col-9 justify-content-center">
+            <div class="col-12 justify-content-center">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <div class="form-group row">
                             <label for="image" class="col-3 col-form-label">Dodaj zdjęcie:</label>
                             <div class="col-4">
 
+                                <form>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">Wybierz plik</label>
+                                    </div>
+                                </form>
 
-                                <div class="custom-file">
-                                    <label class="btn-sm btn-info custom-file-label" for="image">Wybierz pliki</label>
-                                    <input type="file" class="custom-file-input" id="image" name="image" lang="pl-Pl">
-
-                                </div>
                             </div>
                         </div>
 
@@ -149,6 +150,14 @@
 <%@include file="../dynamic/board.jspf" %>
 
 <%@include file="../dynamic/js.jspf" %>
+
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
 
 </body>
 </html>
