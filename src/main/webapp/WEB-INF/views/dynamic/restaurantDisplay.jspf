@@ -3,7 +3,7 @@
 <c:forEach items="${restaurant}" var="restaurant">
     <div class="col-lg-8 col-md-8 mx-auto">
         <div style="font-size: 90%" class="shadow-sm bg-light rounded post-preview col-12">
-            <a href="#">
+            <a href='<c:url value="/allRestaurants/${restaurant.id}"/>'>
                 <div class="spacer" style="height: 15px"></div>
 
                 <div style="

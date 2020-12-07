@@ -18,9 +18,9 @@ public class ReviewService {
         this.reviewRepository = reviewRepository;
     }
 
-//    public List<Review> findByRestaurant_IdAndOrderByReviewDate(long restaurantId){
-//        return reviewRepository.findByRestaurant_IdAndOrderByReviewDate(restaurantId);
-//    }
+    public List<Review> findByRestaurant_IdAndOrderByReviewDate(){
+        return reviewRepository.findAllByOrderByRestaurantCreateDateDesc();
+    }
 
     public List<Review> findReviewsByUserEquals(User user){
         return reviewRepository.findReviewsByUserEquals(user);

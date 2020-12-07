@@ -3,9 +3,10 @@ package Guzcce.restbook.controller;
 
 import Guzcce.restbook.model.Cuisine;
 import Guzcce.restbook.model.Restaurant;
+import Guzcce.restbook.model.Review;
 import Guzcce.restbook.service.CuisineService;
 import Guzcce.restbook.service.RestaurantService;
-import org.springframework.beans.factory.annotation.Autowired;
+import Guzcce.restbook.service.ReviewService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,10 +23,12 @@ public class RestaurantController {
 
     private final CuisineService cuisineService;
     private final RestaurantService restaurantService;
+    private final ReviewService reviewService;
 
-    public RestaurantController(RestaurantService restaurantService, CuisineService cuisineService) {
+    public RestaurantController(RestaurantService restaurantService, CuisineService cuisineService, ReviewService reviewService) {
         this.restaurantService = restaurantService;
         this.cuisineService = cuisineService;
+        this.reviewService = reviewService;
     }
 
     //View of selected restaurant
@@ -33,6 +36,8 @@ public class RestaurantController {
     public String viewSelectedRestaurant(Model model, @PathVariable Long id) {
         Optional<Restaurant> restaurant1 = restaurantService.getRestaurant(id);
         if (restaurant1.isPresent()) {
+            List<Review> list = reviewService.findByRestaurant_IdAndOrderByReviewDate();
+            model.addAttribute("review", list);
             model.addAttribute("restaurant", restaurant1.get());
             return "restaurants/restaurant";
         } else return "restaurants/restaurantNotFound";

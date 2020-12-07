@@ -67,7 +67,7 @@
 
 
                             <!-- Button trigger modal -->
-                            <button type="button" class="p-2 btn btn-primary rounded-pill col-3" data-toggle="modal"
+                            <button type="button" class="p-2 btn btn-info rounded-pill col-3" data-toggle="modal"
                                     data-target="#addCuisineModal">
                                 Dodaj rodzaje kuchni
                             </button>
@@ -100,13 +100,13 @@
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="addCuisineModalTitle">Rodzaje kuchni:</h5>
+                                            <h5 class="modal-title d-flex justify-content-center" id="addCuisineModalTitle">Rodzaje kuchni:</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
 
-                                        <div class="modal-body col-12 align-self-center">
+                                        <div class="modal-body col-12 d-flex justify-content-center">
                                             <div class="row col-12">
                                                 <c:forEach items="${cuisine}" var="cuisine">
                                                     <div class="p-1 btn-group-toggle col-4" data-toggle="buttons">
@@ -132,9 +132,9 @@
                             </div>
                         </div>
 
-                        <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />" name="creationDate">
+                        <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />" name="createDate">
                         <input class="btn btn-info rounded-pill" type="submit" value="Dodaj restaurację"
-                               id="sendButton"></input>
+                               id="sendButton">
                     </div>
                 </div>
             </div>

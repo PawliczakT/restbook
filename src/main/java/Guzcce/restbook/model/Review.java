@@ -1,6 +1,9 @@
 package Guzcce.restbook.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -10,7 +13,11 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String description;
+    private String pros;
+    private String cons;
     private float rate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date createDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private  User user;
@@ -21,10 +28,13 @@ public class Review {
     public Review() {
     }
 
-    public Review(Long id, String description, float rate, User user, Restaurant restaurant) {
+    public Review(Long id, String description, String pros, String cons, float rate, Date createDate, User user, Restaurant restaurant) {
         this.id = id;
         this.description = description;
+        this.pros = pros;
+        this.cons = cons;
         this.rate = rate;
+        this.createDate = createDate;
         this.user = user;
         this.restaurant = restaurant;
     }
@@ -60,6 +70,30 @@ public class Review {
     public Restaurant getRestaurant() { return restaurant; }
 
     public void setRestaurant(Restaurant restaurant) { this.restaurant = restaurant; }
+
+    public String getPros() {
+        return pros;
+    }
+
+    public void setPros(String pros) {
+        this.pros = pros;
+    }
+
+    public String getCons() {
+        return cons;
+    }
+
+    public void setCons(String cons) {
+        this.cons = cons;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
 
     @Override
     public boolean equals(Object o) {
