@@ -16,11 +16,11 @@
 
 
         <div style="
-                            margin: 10px;
-                            float: left;
-                            height: 350px;
-                            background-size: cover;
-                            background-image: url('<c:url value="/resources/img/rest1.jpg"/>');" class="col-lg-6 p-1">
+                margin: 10px;
+                float: left;
+                height: 350px;
+                background-size: cover;
+                background-image: url('<c:url value="/resources/img/rest1.jpg"/>');" class="col-lg-6 p-1">
         </div>
 
 
@@ -42,19 +42,20 @@
         <div class="col-12">
             <form name="send" method="post" action='<c:url value="/allRestaurants/${restaurant.id}"/>'>
                 <p style="max-height: 0px;">Oceń naszą restaurację:</p>
-                <div class="row col-12 rate">
-                    <input type="radio" id="star5" name="rate" value="5"/>
-                    <label for="star5" title="bosko">5 stars</label>
-                    <input type="radio" id="star4" name="rate" value="4"/>
-                    <label for="star4" title="dobrze">4 stars</label>
-                    <input type="radio" id="star3" name="rate" value="3"/>
-                    <label for="star3" title="średnio">3 stars</label>
-                    <input type="radio" id="star2" name="rate" value="2"/>
-                    <label for="star2" title="słabo">2 stars</label>
-                    <input type="radio" id="star1" name="rate" value="1"/>
-                    <label for="star1" title="dlaczego trujecie ludzi?">1 star</label>
+                <div class="row col-12 ">
+                    <div class="rate">
+                        <input type="radio" id="star5" name="rate" value="5">
+                        <label for="star5" title="Bosko">5 stars</label>
+                        <input type="radio" id="star4" name="rate" value="4">
+                        <label for="star4" title="Dobrze">4 stars</label>
+                        <input type="radio" id="star3" name="rate" value="3">
+                        <label for="star3" title="Średnio">3 stars</label>
+                        <input type="radio" id="star2" name="rate" value="2">
+                        <label for="star2" title="Słabo">2 stars</label>
+                        <input type="radio" id="star1" name="rate" value="1">
+                        <label for="star1" title="Dlaczego trujecie ludzi?">1 star</label>
+                    </div>
                 </div>
-
                 <div class="form-group">
                     <label for="pros">Co Ci się podoba?</label>
                     <textarea class="form-control" id="pros" name="pros" rows="3"></textarea>
@@ -64,55 +65,54 @@
                     <textarea class="form-control" id="cons" name="cons" rows="3"></textarea>
                 </div>
                 <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />" name="createDate">
+                <input type="hidden" value="${restaurant.id}" name="restaurant">
                 <input class="btn btn-info rounded-pill" type="submit" value="Dodaj recenzję"
                        id="sendButton">
-
             </form>
 
 
             <c:forEach items="${review}" var="review">
-            <div class="jumbotron jumbotron-fluid">
-                <div class="reviews">
-                    <h1 class="display-4">Nazwa użytkownika dającego recenzję</h1>
-                    <p class="lead">Data dodania: ${review.createDate}</p>
-                    <p class="lead">Plusy: ${review.pros}</p>
-                    <p class="lead">Minusy: ${review.cons}</p>
-                    <div>
-                        <p>Ocena: ${review.rate}
-                            <c:if test="${review.rate > 0 && review.rate <= 1}">
-                            <i class="fas fa-star" style="color:gold"></i>
-                            </c:if>
-                            <c:if test="${review.rate > 1 && restaurant.rate <= 2}">
-                            <i class="fas fa-star" style="color:gold"></i>
-                            <i class="fas fa-star" style="color:gold"></i>
-                            </c:if>
-                            <c:if test="${review.rate > 2 && review.rate <= 3}">
-                            <i class="fas fa-star" style="color:gold"></i>
-                            <i class="fas fa-star" style="color:gold"></i>
-                            <i class="fas fa-star" style="color:gold"></i>
-                            </c:if>
-                            <c:if test="${review.rate > 3 && review.rate <= 4}">
-                            <i class="fas fa-star" style="color:gold"></i>
-                            <i class="fas fa-star" style="color:gold"></i>
-                            <i class="fas fa-star" style="color:gold"></i>
-                            <i class="fas fa-star" style="color:gold"></i>
-                            </c:if>
-                            <c:if test="${review.rate > 4.75 && review.rate <= 5}">
-                            <i class="fas fa-star" style="color:gold"></i>
-                            <i class="fas fa-star" style="color:gold"></i>
-                            <i class="fas fa-star" style="color:gold"></i>
-                            <i class="fas fa-star" style="color:gold"></i>
-                            <i class="fas fa-star" style="color:gold"></i>
-                            </c:if>
+                <hr>
+                <div class="col-12">
+                    <div class="reviews">
+                        <h1 style="font-size: 90%;" class="post-title">Jakiś Józuś69 (trzeba dodać nazwę z bazy)</h1>
+                        <h1 style="font-size: 80%;" class="post-subtitle">Data dodania: ${review.createDate}</h1>
+                        <p class="lead">Plusy: ${review.pros}</p>
+                        <p class="lead">Minusy: ${review.cons}</p>
+                        <div>
+                            <p>Ocena: ${review.rate}
+                                <c:if test="${review.rate > 0 && review.rate <= 1}">
+                                <i class="fas fa-star" style="color:gold"></i>
+                                </c:if>
+                                <c:if test="${review.rate > 1 && restaurant.rate <= 2}">
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                </c:if>
+                                <c:if test="${review.rate > 2 && review.rate <= 3}">
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                </c:if>
+                                <c:if test="${review.rate > 3 && review.rate <= 4}">
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                </c:if>
+                                <c:if test="${review.rate > 4.75 && review.rate <= 5}">
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                </c:if>
+                        </div>
                     </div>
                 </div>
-                </c:forEach>
-
-
-            </div>
+            </c:forEach>
         </div>
     </div>
-
+</div>
 
     <hr>
 
