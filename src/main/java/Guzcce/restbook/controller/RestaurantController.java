@@ -43,6 +43,14 @@ public class RestaurantController {
         } else return "restaurants/restaurantNotFound";
     }
 
+    //Save review in database
+    @RequestMapping(value = {"/allRestaurants/{id}"}, method = RequestMethod.POST)
+    public RedirectView postAddNewReview(@ModelAttribute Review newReview) {
+        reviewService.saveReview(newReview);
+        return new RedirectView("/allRestaurants/{id}");
+    }
+
+
     //View of all added restaurants
     @RequestMapping(value = {"/allRestaurants"}, method = RequestMethod.GET)
     public String viewAllRestaurants(Model model) {
