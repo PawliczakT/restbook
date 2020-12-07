@@ -43,6 +43,22 @@ public class Restaurant {
         this.createDate = createDate;
     }
 
+    public float getAverageRate() {
+        return averageRate;
+    }
+
+    public void setAverageRate(float averageRate) {
+        this.averageRate = averageRate;
+    }
+
+    public Set<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Set<Review> reviews) {
+        this.reviews = reviews;
+    }
+
     public Long getId() {
         return id;
     }
