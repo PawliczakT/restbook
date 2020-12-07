@@ -5,7 +5,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href='<c:url value="/"/>'><i class="fas fa-home" hight="50" width="50"
+        <a class="navbar-brand" href='<c:url value="/"/>'><i class="fas fa-home"
                                                              style="color:white"></i></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
@@ -25,7 +25,7 @@
                     <%--                   CHANGE:--%>
                     <%--                   !!! value="/user/1" TO value="/user/{id}" !!!!--%>
 
-                    <a class="nav-link" href='<c:url value="/user/1"/>'>Profil</a>
+                    <a class="nav-link" href='<c:url value="/user/admin"/>'>Profil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href='<c:url value="/login"/>'>Zaloguj</a>
