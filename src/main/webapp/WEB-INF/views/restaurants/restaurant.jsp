@@ -81,31 +81,31 @@
                         <p class="lead">Minusy: ${review.cons}</p>
                         <div>
                             <p>Ocena: ${review.rate}
-                                <c:if test="${review.rate > 0 && review.rate <= 1}">
+                                <c:if test="${review.rate == 1}">
                                 <i class="fas fa-star" style="color:gold"></i>
                                 </c:if>
-                                <c:if test="${review.rate > 1 && restaurant.rate <= 2}">
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
-                                </c:if>
-                                <c:if test="${review.rate > 2 && review.rate <= 3}">
-                                <i class="fas fa-star" style="color:gold"></i>
+                                <c:if test="${review.rate == 2}">
                                 <i class="fas fa-star" style="color:gold"></i>
                                 <i class="fas fa-star" style="color:gold"></i>
                                 </c:if>
-                                <c:if test="${review.rate > 3 && review.rate <= 4}">
-                                <i class="fas fa-star" style="color:gold"></i>
+                                <c:if test="${review.rate == 3}">
                                 <i class="fas fa-star" style="color:gold"></i>
                                 <i class="fas fa-star" style="color:gold"></i>
                                 <i class="fas fa-star" style="color:gold"></i>
                                 </c:if>
-                                <c:if test="${review.rate > 4.75 && review.rate <= 5}">
-                                <i class="fas fa-star" style="color:gold"></i>
+                                <c:if test="${review.rate == 4}">
                                 <i class="fas fa-star" style="color:gold"></i>
                                 <i class="fas fa-star" style="color:gold"></i>
                                 <i class="fas fa-star" style="color:gold"></i>
                                 <i class="fas fa-star" style="color:gold"></i>
                                 </c:if>
+                                <c:if test="${review.rate == 5}">
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                <i class="fas fa-star" style="color:gold"></i>
+                                </c:if></p>
                         </div>
                     </div>
                 </div>
