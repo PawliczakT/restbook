@@ -1,11 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <jsp:useBean id="now" class="java.util.Date"/>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%@include file="../dynamic/css.jspf" %>
 
 <body class="bg-gradient-primary">
+
+<%@include file="../dynamic/navigationSub.jspf" %>
 
 <div class="container">
 
@@ -38,13 +41,13 @@
                                         </div>
                                     </div>
 
-                                    <input type="submit" class="btn btn-primary btn-user btn-block" value="login">
+                                    <input type="submit" class="btn btn-primary btn-user btn-block rounded-pill" value="Zaloguj">
 
                                     <hr>
 
                                 </form>
                                 <div class="text-center">
-                                    <a class="small" href='<c:url value="/register"/>'>Utwórz konto!</a>
+                                    <a class="btn-sm btn btn-outline-info float-center rounded-pill" href='<c:url value="/register"/>'>Utwórz konto!</a>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +61,9 @@
 
 </div>
 
-<%@include file="../dynamic/js.jspf"%>
+<%@include file="../dynamic/board.jspf" %>
+
+<%@include file="../dynamic/js.jspf" %>
 
 </body>
 

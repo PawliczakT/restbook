@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers().frameOptions().disable()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/login?logout");
+                .logoutSuccessUrl("/");
     }
 
     @Override
