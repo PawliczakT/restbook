@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <jsp:useBean id="now" class="java.util.Date"/>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
@@ -36,9 +37,9 @@
                 </p>
             </div>
         </div>
+
+    <sec:authorize access="hasAuthority('USER')">
         <hr>
-
-
         <div class="col-12">
             <form name="send" method="post" action='<c:url value="/allRestaurants/${restaurant.id}"/>'>
                 <p style="max-height: 0px;">Oceń naszą restaurację:</p>
@@ -69,7 +70,7 @@
                 <input class="btn btn-info rounded-pill" type="submit" value="Dodaj recenzję"
                        id="sendButton">
             </form>
-
+            </sec:authorize>
 
             <c:forEach items="${review}" var="review">
                 <hr>

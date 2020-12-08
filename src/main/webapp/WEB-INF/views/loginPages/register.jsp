@@ -1,11 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <jsp:useBean id="now" class="java.util.Date"/>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%@include file="../dynamic/css.jspf" %>
 
 <body class="bg-gradient-primary">
+
+<%@include file="../dynamic/navigationSub.jspf" %>
+
 <form name="send" method="post" action="<c:url value="/addNewUser"/> ">
 <div class="container">
 
@@ -37,7 +41,7 @@
                                     <input type="password" class="form-control form-control-user" id="password2" name="password2" placeholder="Powtórz hasło">
                                 </div>
                             </div>
-                        <input class="btn btn-success pull-left"  type="submit" value="Rejestruj" id="searchButton"></input>
+                        <input class="btn btn-info rounded-pill"  type="submit" value="Rejestruj" id="searchButton">
 
 <%--                        <a href="login.jsp" class="btn btn-primary btn-user btn-block">--%>
 <%--                                Rejestruj--%>
@@ -56,7 +60,9 @@
 
 </div>
 
-<%@include file="../dynamic/js.jspf"%>
+<%@include file="../dynamic/board.jspf" %>
+
+<%@include file="../dynamic/js.jspf" %>
 
 </body>
 
