@@ -1,6 +1,7 @@
 package Guzcce.restbook.controller;
 
 
+import Guzcce.restbook.model.Review;
 import Guzcce.restbook.model.User;
 import Guzcce.restbook.service.ReviewService;
 import Guzcce.restbook.service.UserService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -34,7 +36,8 @@ public class UserController {
         Optional<User> user1 = userService.getUser(username);
         if(user1.isPresent()){
             model.addAttribute("user", user1.get());
-            model.addAttribute("reviews", reviewService.findReviewsByUserEquals(user1.get()));
+            List<Review> reviews = reviewService.findReviewsByUserEquals(user1.get());
+            model.addAttribute("reviews", reviews);
             return "user/user";
         }
         else return "user/userNotFound";

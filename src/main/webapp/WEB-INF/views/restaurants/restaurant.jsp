@@ -67,8 +67,8 @@
                 </div>
                 <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />" name="createDate">
                 <input type="hidden" value="${restaurant.id}" name="restaurant">
-                <input class="btn btn-info rounded-pill" type="submit" value="Dodaj recenzję"
-                       id="sendButton">
+                <input type="hidden" value="<sec:authentication property="principal.username" />" name="user">
+                <input class="btn btn-info rounded-pill" type="submit" value="Dodaj recenzję" id="sendButton">
             </form>
             </sec:authorize>
 
@@ -76,7 +76,7 @@
                 <hr>
                 <div class="col-12">
                     <div class="reviews">
-                        <h1 style="font-size: 90%;" class="post-title">Jakiś Józuś69 (trzeba dodać nazwę z bazy)</h1>
+                        <h1 style="font-size: 90%;" class="post-title">${review.getUser().getUsername()}</h1>
                         <h1 style="font-size: 80%;" class="post-subtitle">Data dodania: ${review.createDate}</h1>
                         <p class="lead">Plusy: ${review.pros}</p>
                         <p class="lead">Minusy: ${review.cons}</p>

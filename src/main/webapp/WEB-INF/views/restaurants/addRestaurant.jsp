@@ -59,9 +59,9 @@
 
 
                         <div class="form-group row">
-                            <label for="start" class="col-3 col-form-label">Opis:</label>
+                            <label for="description" class="col-3 col-form-label">Opis:</label>
                             <div class="col-6">
-                                        <textarea class="form-control" rows="5" id="start" name="description"
+                                        <textarea class="form-control" rows="5" id="description" name="description"
                                                   placeholder="Dodaj opis restauracji"></textarea>
                             </div>
                         </div>

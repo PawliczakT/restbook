@@ -17,7 +17,7 @@
     </div>
     <hr>
     <div style="text-align: center">
-        USERNAME SZMATY
+        ${user.getUsername()}
     </div>
 </div>
 <hr>

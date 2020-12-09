@@ -98,8 +98,7 @@ public class User implements UserDetails {
         return true;
     }
 
-
-    @Override
+        @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -116,3 +115,4 @@ public class User implements UserDetails {
         return Objects.hash(username, email, password, reviews, role);
     }
 }
+
