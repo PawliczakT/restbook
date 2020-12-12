@@ -1,6 +1,5 @@
 package Guzcce.restbook.model;
 
-import java.io.File;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -33,6 +32,17 @@ public class Restaurant {
 
     public Restaurant(){
 
+    }
+
+    public Restaurant(String name, String phone, String address, String description, String image, Date createDate, Set<FileDB> images) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.description = description;
+        this.image = image;
+        this.createDate = createDate;
+        this.images = images;
     }
 
     public Restaurant(Long id, String name, String phone, String address, String description, String image, float averageRate, boolean verified, Date createDate, Set<FileDB> images) {

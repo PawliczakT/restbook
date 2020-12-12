@@ -1,14 +1,23 @@
 package Guzcce.restbook.controller;
 
 
+import static java.util.Collections.singletonList;
+
 import Guzcce.restbook.model.Cuisine;
 import Guzcce.restbook.model.FileDB;
 import Guzcce.restbook.model.Restaurant;
+import Guzcce.restbook.model.RestaurantDto;
 import Guzcce.restbook.model.Review;
 import Guzcce.restbook.service.CuisineService;
 import Guzcce.restbook.service.FileStorageService;
 import Guzcce.restbook.service.RestaurantService;
 import Guzcce.restbook.service.ReviewService;
+import java.io.IOException;
+import java.time.Instant;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -81,10 +90,8 @@ public class RestaurantController {
 
     //Save restaurant in database
     @RequestMapping(value = {"/addNewRestaurant"}, method = RequestMethod.POST)
-    public RedirectView postAddNewRestaurant(@ModelAttribute Restaurant newRestaurant) {
-        Set<FileDB> images = newRestaurant.getImages();
-        newRestaurant.setImages(fileStorageService.saveMultiple(images));
-        restaurantService.saveRestaurant(newRestaurant);
+    public RedirectView postAddNewRestaurant(@ModelAttribute RestaurantDto newRestaurant) {
+        restaurantService.saveRestaurant(toRestaurant(newRestaurant));
         return new RedirectView("/");
     }
 
@@ -101,4 +108,13 @@ public class RestaurantController {
         } else return "restaurants/restaurantNotFound";
     }
 
+    private Restaurant toRestaurant(RestaurantDto restaurantDto) {
+        try {
+            FileDB storedFile = fileStorageService.store(restaurantDto.getImage());
+            return new Restaurant(restaurantDto.getName(), restaurantDto.getPhone(), restaurantDto.getAddress(), restaurantDto.getDescription(),
+                    storedFile.getId(), Date.from(Instant.now()), new HashSet<>(singletonList(storedFile)));
+        } catch (IOException e) {
+            throw new RuntimeException("Cos nie dziala", e);
+        }
+    }
 }
