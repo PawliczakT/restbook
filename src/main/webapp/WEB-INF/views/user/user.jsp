@@ -39,39 +39,38 @@
             <div class="reviews">
                 <a href="/allRestaurants/${review.restaurant.id}">
                     <h1 style="font-size: 90%;" class="post-title">Restauracja: ${review.restaurant.name}</h1>
-
-                    <h1 style="font-size: 80%;" class="post-subtitle">Data dodania: ${review.createDate}</h1>
-                    <p class="lead">Plusy: ${review.pros}</p>
-                    <p class="lead">Minusy: ${review.cons}</p>
-                    <div>
-                        <p>Ocena: ${review.rate}
-                            <c:if test="${review.rate == 1}">
-                                <i class="fas fa-star" style="color:gold"></i>
-                            </c:if>
-                            <c:if test="${review.rate == 2}">
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
-                            </c:if>
-                            <c:if test="${review.rate == 3}">
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
-                            </c:if>
-                            <c:if test="${review.rate == 4}">
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
-                            </c:if>
-                            <c:if test="${review.rate == 5}">
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
-                            </c:if></p>
-                    </div>
                 </a>
+                <h1 style="font-size: 80%;" class="post-subtitle">Data dodania: ${review.getFormattedDate()}</h1>
+                <p class="lead">Plusy: ${review.pros}</p>
+                <p class="lead">Minusy: ${review.cons}</p>
+                <div>
+                    <p>Ocena: ${review.rate}
+                        <c:if test="${review.rate == 1}">
+                            <i class="fas fa-star" style="color:gold"></i>
+                        </c:if>
+                        <c:if test="${review.rate == 2}">
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                        </c:if>
+                        <c:if test="${review.rate == 3}">
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                        </c:if>
+                        <c:if test="${review.rate == 4}">
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                        </c:if>
+                        <c:if test="${review.rate == 5}">
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                            <i class="fas fa-star" style="color:gold"></i>
+                        </c:if></p>
+                </div>
             </div>
         </div>
     </c:forEach>

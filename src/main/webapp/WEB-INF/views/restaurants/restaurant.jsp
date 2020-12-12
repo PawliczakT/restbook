@@ -78,7 +78,7 @@
                             <label for="cons">Co moglibyśmy poprawić?</label>
                             <textarea class="form-control" id="cons" name="cons" rows="3"></textarea>
                         </div>
-                        <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />"
+                        <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" />"
                                name="createDate">
                         <input type="hidden" value="${restaurant.id}" name="restaurant">
                         <input type="hidden" value="<sec:authentication property="principal.username" />" name="user">
@@ -92,8 +92,8 @@
                 <div class="col-12 collapse multi-collapse" id="allReviews">
                     <hr>
                     <div class="reviews">
-                        <h1 style="font-size: 90%;" class="post-title">${review.user.username}</h1>
-                        <h1 style="font-size: 80%;" class="post-subtitle">Data dodania: ${review.createDate}</h1>
+                        <a href='<c:url value="/user/${review.user.username}"/>'><h1 style="font-size: 90%;" class="post-title">${review.user.username}</h1></a>
+                        <h1 style="font-size: 80%;" class="post-subtitle">Data dodania: ${review.getFormattedDate()}</h1>
                         <p class="lead">Plusy: ${review.pros}</p>
                         <p class="lead">Minusy: ${review.cons}</p>
                         <div>
@@ -102,7 +102,7 @@
                                     <i class="fas fa-star" style="color:gold"></i>
                                 </c:if>
                                 <c:if test="${review.rate == 2}">
-                                    <i class="fas fa-star" style="color:gold"></i>
+                                    <i class="fas fa-star" style="color:#ffd700"></i>
                                     <i class="fas fa-star" style="color:gold"></i>
                                 </c:if>
                                 <c:if test="${review.rate == 3}">
