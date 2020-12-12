@@ -21,7 +21,7 @@
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
                     <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url('<c:url value="/resources/img/login.png"/>'); background-size: 100%"></div>
+                        <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url('<c:url value="/resources/img/loginAndRegister.jpg"/>'); background-size: 100%"></div>
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">

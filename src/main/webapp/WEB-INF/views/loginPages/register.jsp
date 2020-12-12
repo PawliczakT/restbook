@@ -13,11 +13,15 @@
 <form name="send" method="post" action="<c:url value="/addNewUser"/> ">
 <div class="container">
 
-    <div class="card o-hidden border-0 shadow-lg my-5">
-        <div class="card-body p-0">
+    <div class="row justify-content-center">
+
+        <div class="col-xl-10 col-lg-12 col-md-9">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-                <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url('<c:url value="/resources/img/login.png"/>'); background-size: 100%"></div>
+                <div class="col-lg-6 d-none d-lg-block bg-login-image" style="background-image: url('<c:url value="/resources/img/loginAndRegister.jpg"/>'); background-size: 100%"></div>
                 <div class="col-lg-6">
                     <div class="p-5">
                         <div class="text-center">
@@ -41,7 +45,7 @@
                                     <input type="password" class="form-control form-control-user" id="password2" name="password2" placeholder="Powtórz hasło">
                                 </div>
                             </div>
-                        <input class="btn btn-info rounded-pill"  type="submit" value="Rejestruj" id="searchButton">
+                        <input class="btn btn-primary btn-user btn-block rounded-pill"  type="submit" value="Rejestruj" id="searchButton">
 
 <%--                        <a href="login.jsp" class="btn btn-primary btn-user btn-block">--%>
 <%--                                Rejestruj--%>
@@ -50,7 +54,7 @@
 
                         </form>
                         <div class="text-center">
-                            <a class="small" href='<c:url value="/login"/>'>Masz już konto? Zaloguj się!</a>
+                            <a class="btn-sm btn btn-outline-info float-center rounded-pill" href='<c:url value="/login"/>'>Masz już konto? Zaloguj się!</a>
                         </div>
                     </div>
                 </div>
@@ -59,6 +63,9 @@
     </div>
 
 </div>
+</div>
+</div>
+
 
 <%@include file="../dynamic/board.jspf" %>
 
