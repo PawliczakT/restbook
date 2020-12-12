@@ -23,7 +23,7 @@ public class Restaurant {
     private String image;
     private float averageRate;
     private boolean verified;
-    private LocalDateTime createDate;
+    private Date createDate;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "restaurant")
     private Set<Review> reviews = new HashSet<>();
@@ -139,11 +139,11 @@ public class Restaurant {
         this.verified = verified;
     }
 
-    public LocalDateTime getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -154,8 +154,11 @@ public class Restaurant {
     public void setImages(Set<FileDB> images) {
         this.images = images;
 
-    public String getFormattedDate() {
-        return createDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+//        public String getFormattedDate() {
+//            return createDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+//
+//        }
+
 
     }
 
@@ -164,11 +167,20 @@ public class Restaurant {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Restaurant that = (Restaurant) o;
-        return Objects.equals(id, that.id);
+        return Float.compare(that.averageRate, averageRate) == 0 &&
+                verified == that.verified &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(phone, that.phone) &&
+                Objects.equals(address, that.address) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(image, that.image) &&
+                Objects.equals(createDate, that.createDate) &&
+                Objects.equals(reviews, that.reviews) &&
+                Objects.equals(images, that.images);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
-    }
-}
+        return Objects.hash(id, name, phone, address, description, image, averageRate, verified, createDate, reviews, images);
+    }}
