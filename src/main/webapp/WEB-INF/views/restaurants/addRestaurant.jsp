@@ -134,7 +134,7 @@
                             </div>
                         </div>
 
-                        <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />" name="createDate">
+                        <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" />" name="createDate">
                         <input class="btn btn-info rounded-pill" type="submit" value="Dodaj restaurację"
                                id="sendButton">
                     </div>

@@ -3,6 +3,8 @@ package Guzcce.restbook.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
@@ -21,8 +23,7 @@ public class Restaurant {
     private String image;
     private float averageRate;
     private boolean verified;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date createDate;
+    private LocalDateTime createDate;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "restaurant")
     private Set<Review> reviews = new HashSet<>();
@@ -31,7 +32,7 @@ public class Restaurant {
 
     }
 
-    public Restaurant(Long id, String name, String phone, String address, String description, String image, float averageRate, boolean verified, Date createDate) {
+    public Restaurant(Long id, String name, String phone, String address, String description, String image, float averageRate, boolean verified, LocalDateTime createDate) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -123,14 +124,17 @@ public class Restaurant {
         this.verified = verified;
     }
 
-    public Date getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 
+    public String getFormattedDate() {
+        return createDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
 
     @Override
     public boolean equals(Object o) {
