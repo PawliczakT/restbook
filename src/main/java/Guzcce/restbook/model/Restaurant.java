@@ -1,5 +1,6 @@
 package Guzcce.restbook.model;
 
+import java.io.File;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -27,11 +28,14 @@ public class Restaurant {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "restaurant")
     private Set<Review> reviews = new HashSet<>();
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "restaurant")
+    private Set<FileDB> images = new HashSet<>();
+
     public Restaurant(){
 
     }
 
-    public Restaurant(Long id, String name, String phone, String address, String description, String image, float averageRate, boolean verified, Date createDate) {
+    public Restaurant(Long id, String name, String phone, String address, String description, String image, float averageRate, boolean verified, Date createDate, Set<FileDB> images) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -41,6 +45,7 @@ public class Restaurant {
         this.averageRate = averageRate;
         this.verified = verified;
         this.createDate = createDate;
+        this.images = images;
     }
 
     public float getAverageRate() {
@@ -131,6 +136,13 @@ public class Restaurant {
         this.createDate = createDate;
     }
 
+    public Set<FileDB> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<FileDB> images) {
+        this.images = images;
+    }
 
     @Override
     public boolean equals(Object o) {

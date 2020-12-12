@@ -2,12 +2,14 @@ package Guzcce.restbook.controller;
 
 
 import Guzcce.restbook.model.Cuisine;
+import Guzcce.restbook.model.FileDB;
 import Guzcce.restbook.model.Restaurant;
 import Guzcce.restbook.model.Review;
 import Guzcce.restbook.service.CuisineService;
+import Guzcce.restbook.service.FileStorageService;
 import Guzcce.restbook.service.RestaurantService;
 import Guzcce.restbook.service.ReviewService;
-import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
+import java.util.Set;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,11 +27,14 @@ public class RestaurantController {
     private final CuisineService cuisineService;
     private final RestaurantService restaurantService;
     private final ReviewService reviewService;
+    private final FileStorageService fileStorageService;
 
-    public RestaurantController(RestaurantService restaurantService, CuisineService cuisineService, ReviewService reviewService) {
+    public RestaurantController(RestaurantService restaurantService, CuisineService cuisineService, ReviewService reviewService,
+                                FileStorageService fileStorageService) {
         this.restaurantService = restaurantService;
         this.cuisineService = cuisineService;
         this.reviewService = reviewService;
+        this.fileStorageService = fileStorageService;
     }
 
     //View of selected restaurant
@@ -77,6 +82,8 @@ public class RestaurantController {
     //Save restaurant in database
     @RequestMapping(value = {"/addNewRestaurant"}, method = RequestMethod.POST)
     public RedirectView postAddNewRestaurant(@ModelAttribute Restaurant newRestaurant) {
+        Set<FileDB> images = newRestaurant.getImages();
+        newRestaurant.setImages(fileStorageService.saveMultiple(images));
         restaurantService.saveRestaurant(newRestaurant);
         return new RedirectView("/");
     }
