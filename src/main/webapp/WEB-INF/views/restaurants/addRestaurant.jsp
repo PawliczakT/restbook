@@ -10,7 +10,7 @@
 <%@include file="../dynamic/navigationSub.jspf" %>
 
 <!-- Main Content -->
-<form name="send" method="post" action='<c:url value="/addNewRestaurant"/>'>
+<form name="send" method="post" enctype="multipart/form-data" action='<c:url value="/addNewRestaurant"/>'>
     <!-- Begin Page Content -->
     <div class="container">
 
@@ -25,8 +25,10 @@
 
                                 <form>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile" name="nazwa_kolumny_z_bazy_danych">
-                                        <label class="custom-file-label" for="customFile">Wybierz plik</label>
+
+                                        <input type="file" class="custom-file-input" id="image" name="image">
+                                        <label class="custom-file-label" for="image">Wybierz plik</label>
+
                                     </div>
                                 </form>
 

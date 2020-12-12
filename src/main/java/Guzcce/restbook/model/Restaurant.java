@@ -28,11 +28,25 @@ public class Restaurant {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "restaurant")
     private Set<Review> reviews = new HashSet<>();
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "restaurant")
+    private Set<FileDB> images = new HashSet<>();
+
     public Restaurant(){
 
     }
 
-    public Restaurant(Long id, String name, String phone, String address, String description, String image, float averageRate, boolean verified, LocalDateTime createDate) {
+    public Restaurant(String name, String phone, String address, String description, String image, Date createDate, Set<FileDB> images) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.description = description;
+        this.image = image;
+        this.createDate = createDate;
+        this.images = images;
+    }
+
+    public Restaurant(Long id, String name, String phone, String address, String description, String image, float averageRate, boolean verified, Date createDate, Set<FileDB> images) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -42,6 +56,7 @@ public class Restaurant {
         this.averageRate = averageRate;
         this.verified = verified;
         this.createDate = createDate;
+        this.images = images;
     }
 
     public float getAverageRate() {
@@ -132,8 +147,16 @@ public class Restaurant {
         this.createDate = createDate;
     }
 
+    public Set<FileDB> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<FileDB> images) {
+        this.images = images;
+
     public String getFormattedDate() {
         return createDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
     }
 
     @Override

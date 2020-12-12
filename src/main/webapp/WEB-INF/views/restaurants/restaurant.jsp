@@ -21,7 +21,7 @@
                 float: left;
                 height: 350px;
                 background-size: cover;
-                background-image: url('<c:url value="/resources/img/rest1.jpg"/>');" class="col-lg-6 p-1">
+                background-image: url('<c:url value="/files/${restaurant.image}"/>');" class="col-lg-6 p-1">
         </div>
 
 

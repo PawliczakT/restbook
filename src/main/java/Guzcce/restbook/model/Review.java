@@ -22,10 +22,10 @@ public class Review {
     private LocalDateTime createDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private  User user;
+    private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private  Restaurant restaurant;
+    private Restaurant restaurant;
 
     public Review() {
     }
