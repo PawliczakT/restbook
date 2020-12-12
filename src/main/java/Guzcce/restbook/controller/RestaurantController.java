@@ -51,7 +51,7 @@ public class RestaurantController {
     public String viewSelectedRestaurant(Model model, @PathVariable Long id) {
         Optional<Restaurant> restaurant1 = restaurantService.getRestaurant(id);
         if (restaurant1.isPresent()) {
-            List<Review> list = reviewService.findByRestaurant_IdAndOrderByReviewDate();
+            List<Review> list = reviewService.findByRestaurant_IdAndOrderByReviewDate(restaurant1.get());
             model.addAttribute("review", list);
             model.addAttribute("restaurant", restaurant1.get());
             return "restaurants/restaurant";

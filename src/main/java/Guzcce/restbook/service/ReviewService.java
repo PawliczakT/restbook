@@ -18,12 +18,12 @@ public class ReviewService {
         this.reviewRepository = reviewRepository;
     }
 
-    public List<Review> findByRestaurant_IdAndOrderByReviewDate(){
-        return reviewRepository.findAllByOrderByRestaurantCreateDateDesc();
+    public List<Review> findByRestaurant_IdAndOrderByReviewDate(Restaurant restaurant){
+        return reviewRepository.findReviewsByRestaurantEqualsOrderByCreateDateDesc(restaurant);
     }
 
     public List<Review> findReviewsByUserEquals(User user){
-        return reviewRepository.findReviewsByUserEquals(user);
+        return reviewRepository.findReviewsByUserEqualsOrderByCreateDateDesc(user);
     }
 
     public Optional<Review> getReview(Long id){
