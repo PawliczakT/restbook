@@ -46,16 +46,16 @@ public class FileController {
   public ResponseEntity<List<ResponseFile>> getListFiles() {
     List<ResponseFile> files = storageService.getAllFiles().map(dbFile -> {
       String fileDownloadUri = ServletUriComponentsBuilder
-          .fromCurrentContextPath()
-          .path("/files/")
-          .path(dbFile.getId())
-          .toUriString();
+              .fromCurrentContextPath()
+              .path("/files/")
+              .path(dbFile.getId())
+              .toUriString();
 
       return new ResponseFile(
-          dbFile.getName(),
-          fileDownloadUri,
-          dbFile.getType(),
-          dbFile.getData().length);
+              dbFile.getName(),
+              fileDownloadUri,
+              dbFile.getType(),
+              dbFile.getData().length);
     }).collect(Collectors.toList());
 
     return ResponseEntity.status(HttpStatus.OK).body(files);
@@ -66,7 +66,7 @@ public class FileController {
     FileDB fileDB = storageService.getFile(id);
 
     return ResponseEntity.ok()
-        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
-        .body(fileDB.getData());
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
+            .body(fileDB.getData());
   }
 }

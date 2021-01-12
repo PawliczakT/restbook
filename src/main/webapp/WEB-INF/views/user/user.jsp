@@ -40,7 +40,8 @@
                 <a href="/allRestaurants/${review.restaurant.id}">
                     <h1 style="font-size: 90%;" class="post-title">Restauracja: ${review.restaurant.name}</h1>
                 </a>
-                <h1 style="font-size: 80%;" class="post-subtitle">Data dodania: ${review.getFormattedDate()}</h1>
+
+                <h1 style="font-size: 80%;" class="post-subtitle">Data dodania: ${review.getCreateDate()}</h1>
                 <p class="lead">Plusy: ${review.pros}</p>
                 <p class="lead">Minusy: ${review.cons}</p>
                 <div>

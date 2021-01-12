@@ -145,7 +145,7 @@
         </div>
     </div>
 
-        <!-- /.container-fluid -->
+    <!-- /.container-fluid -->
 </form>
 
 <hr>

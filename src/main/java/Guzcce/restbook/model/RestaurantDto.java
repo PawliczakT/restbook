@@ -72,14 +72,13 @@ public class RestaurantDto {
         }
         RestaurantDto that = (RestaurantDto) o;
         return Objects.equals(name, that.name) &&
-            Objects.equals(phone, that.phone) &&
-            Objects.equals(address, that.address) &&
-            Objects.equals(description, that.description) &&
-            Objects.equals(image, that.image);
+                Objects.equals(phone, that.phone) &&
+                Objects.equals(address, that.address) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(image, that.image);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(name, phone, address, description, image);
     }
-}

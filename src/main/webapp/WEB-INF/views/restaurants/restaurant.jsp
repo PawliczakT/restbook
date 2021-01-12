@@ -37,7 +37,6 @@
                 </p>
             </div>
         </div>
-
         <p>
             <sec:authorize access="hasAuthority('USER')">
                 <button class="btn btn-outline-info rounded-pill" type="button" data-toggle="collapse"
@@ -52,48 +51,51 @@
         </p>
         <div class="col-12">
             <sec:authorize access="hasAuthority('USER')">
-                <div class="collapse multi-collapse col-12" id="addReview">
-                    <hr>
-                    <form name="send" method="post" action='<c:url value="/allRestaurants/${restaurant.id}"/>'>
-                        <p style="max-height: 0px;">Oceń naszą restaurację:</p>
-                        <div class="row col-12">
-                            <div class="rate">
-                                <input type="radio" id="star5" name="rate" value="5">
-                                <label for="star5" title="Bosko">5 stars</label>
-                                <input type="radio" id="star4" name="rate" value="4">
-                                <label for="star4" title="Dobrze">4 stars</label>
-                                <input type="radio" id="star3" name="rate" value="3">
-                                <label for="star3" title="Średnio">3 stars</label>
-                                <input type="radio" id="star2" name="rate" value="2">
-                                <label for="star2" title="Słabo">2 stars</label>
-                                <input type="radio" id="star1" name="rate" value="1">
-                                <label for="star1" title="Dlaczego trujecie ludzi?">1 star</label>
-                            </div>
+            <div class="collapse multi-collapse col-12" id="addReview">
+                <hr>
+                <form name="send" method="post" action='<c:url value="/allRestaurants/${restaurant.id}"/>'>
+                    <p style="max-height: 0px;">Oceń naszą restaurację:</p>
+                    <div class="row col-12">
+                        <div class="rate">
+                            <input type="radio" id="star5" name="rate" value="5">
+                            <label for="star5" title="Bosko">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4">
+                            <label for="star4" title="Dobrze">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3">
+                            <label for="star3" title="Średnio">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2">
+                            <label for="star2" title="Słabo">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1">
+                            <label for="star1" title="Dlaczego trujecie ludzi?">1 star</label>
                         </div>
-                        <div class="form-group">
-                            <label for="pros">Co Ci się podoba?</label>
-                            <textarea class="form-control" id="pros" name="pros" rows="3"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="cons">Co moglibyśmy poprawić?</label>
-                            <textarea class="form-control" id="cons" name="cons" rows="3"></textarea>
-                        </div>
-                        <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" />"
-                               name="createDate">
-                        <input type="hidden" value="${restaurant.id}" name="restaurant">
-                        <input type="hidden" value="<sec:authentication property="principal.username" />" name="user">
+                    </div>
+                    <div class="form-group">
+                        <label for="pros">Co Ci się podoba?</label>
+                        <textarea class="form-control" id="pros" name="pros" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="cons">Co moglibyśmy poprawić?</label>
+                        <textarea class="form-control" id="cons" name="cons" rows="3"></textarea>
+                    </div>
+                    <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" />"
+                           name="createDate">
+                    <input type="hidden" value="${restaurant.id}" name="restaurant">
+                    <input type="hidden" value="<sec:authentication property="principal.username" />" name="user">
 
-                        <input class="btn btn-info rounded-pill" type="submit" value="Dodaj recenzję" id="sendButton">
-                    </form>
-                </div>
+                    <input class="btn btn-info rounded-pill" type="submit" value="Dodaj recenzję" id="sendButton">
+                </form>
+            </div>
+
+
             </sec:authorize>
 
             <c:forEach items="${review}" var="review">
                 <div class="col-12 collapse multi-collapse" id="allReviews">
                     <hr>
                     <div class="reviews">
-                        <a href='<c:url value="/user/${review.user.username}"/>'><h1 style="font-size: 90%;" class="post-title">${review.user.username}</h1></a>
-                        <h1 style="font-size: 80%;" class="post-subtitle">Data dodania: ${review.getFormattedDate()}</h1>
+                        <h1 style="font-size: 90%;" class="post-title">${review.user.username}</h1>
+                        <h1 style="font-size: 80%;" class="post-subtitle">Data dodania: ${review.createDate}</h1>
+
                         <p class="lead">Plusy: ${review.pros}</p>
                         <p class="lead">Minusy: ${review.cons}</p>
                         <div>

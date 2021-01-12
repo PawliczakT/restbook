@@ -19,7 +19,9 @@ public class Review {
     private String pros;
     private String cons;
     private float rate;
-    private LocalDateTime createDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
