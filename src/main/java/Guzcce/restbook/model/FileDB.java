@@ -1,5 +1,6 @@
 package Guzcce.restbook.model;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -18,6 +19,9 @@ public class FileDB {
 
   @Lob
   private byte[] data;
+
+  @ManyToOne(fetch = FetchType.EAGER)
+  private  Restaurant restaurant;
 
   public FileDB() {
   }

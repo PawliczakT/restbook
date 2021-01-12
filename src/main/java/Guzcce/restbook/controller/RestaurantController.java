@@ -1,13 +1,25 @@
 package Guzcce.restbook.controller;
 
 
+import static java.util.Collections.singletonList;
+
 import Guzcce.restbook.model.Cuisine;
+import Guzcce.restbook.model.FileDB;
 import Guzcce.restbook.model.Restaurant;
+import Guzcce.restbook.model.RestaurantDto;
 import Guzcce.restbook.model.Review;
 import Guzcce.restbook.service.CuisineService;
+import Guzcce.restbook.service.FileStorageService;
 import Guzcce.restbook.service.RestaurantService;
 import Guzcce.restbook.service.ReviewService;
-import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
+import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,11 +37,14 @@ public class RestaurantController {
     private final CuisineService cuisineService;
     private final RestaurantService restaurantService;
     private final ReviewService reviewService;
+    private final FileStorageService fileStorageService;
 
-    public RestaurantController(RestaurantService restaurantService, CuisineService cuisineService, ReviewService reviewService) {
+    public RestaurantController(RestaurantService restaurantService, CuisineService cuisineService, ReviewService reviewService,
+                                FileStorageService fileStorageService) {
         this.restaurantService = restaurantService;
         this.cuisineService = cuisineService;
         this.reviewService = reviewService;
+        this.fileStorageService = fileStorageService;
     }
 
     //View of selected restaurant
@@ -37,7 +52,7 @@ public class RestaurantController {
     public String viewSelectedRestaurant(Model model, @PathVariable Long id) {
         Optional<Restaurant> restaurant1 = restaurantService.getRestaurant(id);
         if (restaurant1.isPresent()) {
-            List<Review> list = reviewService.findByRestaurant_IdAndOrderByReviewDate();
+            List<Review> list = reviewService.findByRestaurant_IdAndOrderByReviewDate(restaurant1.get());
             model.addAttribute("review", list);
             model.addAttribute("restaurant", restaurant1.get());
             return "restaurants/restaurant";
@@ -76,8 +91,8 @@ public class RestaurantController {
 
     //Save restaurant in database
     @RequestMapping(value = {"/addNewRestaurant"}, method = RequestMethod.POST)
-    public RedirectView postAddNewRestaurant(@ModelAttribute Restaurant newRestaurant) {
-        restaurantService.saveRestaurant(newRestaurant);
+    public RedirectView postAddNewRestaurant(@ModelAttribute RestaurantDto newRestaurant) {
+        restaurantService.saveRestaurant(toRestaurant(newRestaurant));
         return new RedirectView("/");
     }
 
@@ -94,4 +109,13 @@ public class RestaurantController {
         } else return "restaurants/restaurantNotFound";
     }
 
+    private Restaurant toRestaurant(RestaurantDto restaurantDto) {
+        try {
+            FileDB storedFile = fileStorageService.store(restaurantDto.getImage());
+            return new Restaurant(restaurantDto.getName(), restaurantDto.getPhone(), restaurantDto.getAddress(), restaurantDto.getDescription(),
+                    storedFile.getId(), Date.from(Instant.now()), new HashSet<>(singletonList(storedFile)));
+        } catch (IOException e) {
+            throw new RuntimeException("Cos nie dziala", e);
+        }
+    }
 }

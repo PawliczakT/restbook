@@ -2,6 +2,8 @@ package Guzcce.restbook.service;
 
 import Guzcce.restbook.model.FileDB;
 import Guzcce.restbook.repository.FileDBRepository;
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -23,10 +25,14 @@ public class FileStorageService {
     return fileDBRepository.save(FileDB);
   }
 
+  public Set<FileDB> saveMultiple(Set<FileDB> images) {
+    return new HashSet<>(fileDBRepository.saveAll(images));
+  }
+
   public FileDB getFile(String id) {
     return fileDBRepository.findById(id).get();
   }
-  
+
   public Stream<FileDB> getAllFiles() {
     return fileDBRepository.findAll().stream();
   }

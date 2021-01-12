@@ -16,7 +16,7 @@ public class Review {
     private String pros;
     private String cons;
     private float rate;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createDate;
 
     @ManyToOne(fetch = FetchType.EAGER)

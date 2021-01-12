@@ -10,7 +10,7 @@
 <%@include file="../dynamic/navigationSub.jspf" %>
 
 <!-- Main Content -->
-<form name="send" method="post" action='<c:url value="/addNewRestaurant"/>'>
+<form name="send" method="post" enctype="multipart/form-data" action='<c:url value="/addNewRestaurant"/>'>
     <!-- Begin Page Content -->
     <div class="container">
 
@@ -25,8 +25,10 @@
 
                                 <form>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="customFile">
-                                        <label class="custom-file-label" for="customFile">Wybierz plik</label>
+
+                                        <input type="file" class="custom-file-input" id="image" name="image">
+                                        <label class="custom-file-label" for="image">Wybierz plik</label>
+
                                     </div>
                                 </form>
 
@@ -134,7 +136,7 @@
                             </div>
                         </div>
 
-                        <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" />" name="createDate">
+                        <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" />" name="createDate">
                         <input class="btn btn-info rounded-pill" type="submit" value="Dodaj restaurację"
                                id="sendButton">
                     </div>
@@ -143,7 +145,7 @@
         </div>
     </div>
 
-        <!-- /.container-fluid -->
+    <!-- /.container-fluid -->
 </form>
 
 <hr>

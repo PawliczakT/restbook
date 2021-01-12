@@ -12,7 +12,7 @@
                         height: 150px;
                         width: 50%;
                         background-size: cover;
-                        background-image: url('<c:url value="/resources/img/rest1.jpg"/>');" class="col-lg-4 p-1">
+                        background-image: url('<c:url value="/files/${restaurant.image}"/>');" class="col-lg-4 p-1">
                 </div>
 
                 <div style="height: 100%" class="col-12">

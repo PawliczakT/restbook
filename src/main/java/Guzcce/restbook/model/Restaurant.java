@@ -3,6 +3,8 @@ package Guzcce.restbook.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
@@ -21,17 +23,31 @@ public class Restaurant {
     private String image;
     private float averageRate;
     private boolean verified;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createDate;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "restaurant")
     private Set<Review> reviews = new HashSet<>();
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "restaurant")
+    private Set<FileDB> images = new HashSet<>();
+
     public Restaurant(){
 
     }
 
-    public Restaurant(Long id, String name, String phone, String address, String description, String image, float averageRate, boolean verified, Date createDate) {
+    public Restaurant(String name, String phone, String address, String description, String image, Date createDate, Set<FileDB> images) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.description = description;
+        this.image = image;
+        this.createDate = createDate;
+        this.images = images;
+    }
+
+    public Restaurant(Long id, String name, String phone, String address, String description, String image, float averageRate, boolean verified, Date createDate, Set<FileDB> images) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -41,6 +57,7 @@ public class Restaurant {
         this.averageRate = averageRate;
         this.verified = verified;
         this.createDate = createDate;
+        this.images = images;
     }
 
     public float getAverageRate() {
@@ -131,17 +148,40 @@ public class Restaurant {
         this.createDate = createDate;
     }
 
+    public Set<FileDB> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<FileDB> images) {
+        this.images = images;
+
+//        public String getFormattedDate() {
+//            return createDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+//
+//        }
+
+
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Restaurant that = (Restaurant) o;
-        return Objects.equals(id, that.id);
+        return Float.compare(that.averageRate, averageRate) == 0 &&
+                verified == that.verified &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(phone, that.phone) &&
+                Objects.equals(address, that.address) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(image, that.image) &&
+                Objects.equals(createDate, that.createDate) &&
+                Objects.equals(reviews, that.reviews) &&
+                Objects.equals(images, that.images);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
-    }
-}
+        return Objects.hash(id, name, phone, address, description, image, averageRate, verified, createDate, reviews, images);
+    }}
