@@ -23,6 +23,7 @@ public class Restaurant {
     private String image;
     private float averageRate;
     private boolean verified;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createDate;
 

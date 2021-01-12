@@ -86,6 +86,7 @@
                 </form>
             </div>
 
+
             </sec:authorize>
 
             <c:forEach items="${review}" var="review">
@@ -94,34 +95,35 @@
                     <div class="reviews">
                         <h1 style="font-size: 90%;" class="post-title">${review.user.username}</h1>
                         <h1 style="font-size: 80%;" class="post-subtitle">Data dodania: ${review.createDate}</h1>
+
                         <p class="lead">Plusy: ${review.pros}</p>
                         <p class="lead">Minusy: ${review.cons}</p>
                         <div>
                             <p>Ocena: ${review.rate}
                                 <c:if test="${review.rate == 1}">
-                                <i class="fas fa-star" style="color:gold"></i>
+                                    <i class="fas fa-star" style="color:gold"></i>
                                 </c:if>
                                 <c:if test="${review.rate == 2}">
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
+                                    <i class="fas fa-star" style="color:#ffd700"></i>
+                                    <i class="fas fa-star" style="color:gold"></i>
                                 </c:if>
                                 <c:if test="${review.rate == 3}">
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
+                                    <i class="fas fa-star" style="color:gold"></i>
+                                    <i class="fas fa-star" style="color:gold"></i>
+                                    <i class="fas fa-star" style="color:gold"></i>
                                 </c:if>
                                 <c:if test="${review.rate == 4}">
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
+                                    <i class="fas fa-star" style="color:gold"></i>
+                                    <i class="fas fa-star" style="color:gold"></i>
+                                    <i class="fas fa-star" style="color:gold"></i>
+                                    <i class="fas fa-star" style="color:gold"></i>
                                 </c:if>
                                 <c:if test="${review.rate == 5}">
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
-                                <i class="fas fa-star" style="color:gold"></i>
+                                    <i class="fas fa-star" style="color:gold"></i>
+                                    <i class="fas fa-star" style="color:gold"></i>
+                                    <i class="fas fa-star" style="color:gold"></i>
+                                    <i class="fas fa-star" style="color:gold"></i>
+                                    <i class="fas fa-star" style="color:gold"></i>
                                 </c:if></p>
                         </div>
                     </div>
@@ -131,11 +133,11 @@
     </div>
 </div>
 
-    <hr>
+<hr>
 
-    <%@include file="../dynamic/board.jspf" %>
+<%@include file="../dynamic/board.jspf" %>
 
-    <%@include file="../dynamic/js.jspf" %>
+<%@include file="../dynamic/js.jspf" %>
 
 </body>
 

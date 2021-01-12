@@ -10,4 +10,4 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
     List<Review> findReviewsByRestaurantEqualsOrderByCreateDateDesc(Restaurant restaurant);
     List<Review> findReviewsByUserEqualsOrderByCreateDateDesc(User user);
-}
+

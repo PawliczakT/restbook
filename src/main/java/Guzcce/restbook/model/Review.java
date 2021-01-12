@@ -3,7 +3,10 @@ package Guzcce.restbook.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Formatter;
 import java.util.Objects;
 
 @Entity
@@ -16,19 +19,20 @@ public class Review {
     private String pros;
     private String cons;
     private float rate;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private  User user;
+    private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private  Restaurant restaurant;
+    private Restaurant restaurant;
 
     public Review() {
     }
 
-    public Review(Long id, String description, String pros, String cons, float rate, Date createDate, User user, Restaurant restaurant) {
+    public Review(Long id, String description, String pros, String cons, float rate, LocalDateTime createDate, User user, Restaurant restaurant) {
         this.id = id;
         this.description = description;
         this.pros = pros;
@@ -87,12 +91,16 @@ public class Review {
         this.cons = cons;
     }
 
-    public Date getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
+    }
+
+    public String getFormattedDate() {
+        return createDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     @Override

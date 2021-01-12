@@ -82,4 +82,3 @@ public class RestaurantDto {
     public int hashCode() {
         return Objects.hash(name, phone, address, description, image);
     }
-}

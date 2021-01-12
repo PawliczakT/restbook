@@ -37,7 +37,7 @@ public class UserController {
         if(user1.isPresent()){
             model.addAttribute("user", user1.get());
             List<Review> reviews = reviewService.findReviewsByUserEquals(user1.get());
-            model.addAttribute("reviews", reviews);
+            model.addAttribute("review", reviews);
             return "user/user";
         }
         else return "user/userNotFound";
