@@ -3,8 +3,6 @@ package Guzcce.restbook.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
@@ -23,7 +21,6 @@ public class Restaurant {
     private String image;
     private float averageRate;
     private boolean verified;
-
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createDate;
 
