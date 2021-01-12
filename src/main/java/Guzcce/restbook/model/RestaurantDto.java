@@ -1,6 +1,7 @@
 package Guzcce.restbook.model;
 
 import java.util.Objects;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class RestaurantDto {
@@ -82,3 +83,4 @@ public class RestaurantDto {
     public int hashCode() {
         return Objects.hash(name, phone, address, description, image);
     }
+}
