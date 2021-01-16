@@ -11,8 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Rest Book - Znajdź swoją restaurację</title>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link href='<c:url value="/resources/vendor/bootstrap/css/bootstrap.min.css"/>' rel="stylesheet">

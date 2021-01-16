@@ -9,7 +9,45 @@
 <body>
 
 <%@include file="../dynamic/navigationSub.jspf" %>
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJQYkMiN2SO_gEQ4Q_BLnqlfZpPn6Yp98&callback=initMap&libraries=&v=weekly"
+        defer
+></script>
 
+<script>
+
+
+    // Initialize and add the map
+    function initMap() {
+
+        const location = "${restaurant.address} Poznan";
+        axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+            params: {
+                address: location,
+                key: 'AIzaSyBJQYkMiN2SO_gEQ4Q_BLnqlfZpPn6Yp98'
+            }
+        })
+            .then(function (response) {
+                let lat = response.data.results[0].geometry.location.lat;
+                let lng = response.data.results[0].geometry.location.lng;
+
+                const restLocation = {lat: lat, lng: lng};
+                // The map, centered at restaurant location
+                const map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 17,
+                    center: restLocation,
+                });
+                // The marker, positioned at restaurant location
+                const marker = new google.maps.Marker({
+                    position: restLocation,
+                    map: map,
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+</script>
 
 <!-- Main Content -->
 <div class="container col-12 d-flex justify-content-center">
@@ -46,45 +84,58 @@
             </sec:authorize>
             <button class="btn btn-outline-info rounded-pill" type="button" data-toggle="collapse"
                     data-target="#allReviews"
-                    aria-expanded="false" aria-controls="multiCollapseExample2">Zobacz wszystkie opinie (${review.size()})
+                    aria-expanded="false" aria-controls="multiCollapseExample2">Zobacz wszystkie opinie
+                (${review.size()})
             </button>
+
+            <button class="btn btn-outline-info rounded-pill" type="button" data-toggle="collapse"
+                    data-target="#googleMaps"
+                    aria-expanded="false" aria-controls="multiCollapseExample2">Sprawdź gdzie jesteśmy
+            </button>
+
         </p>
         <div class="col-12">
-            <sec:authorize access="hasAuthority('USER')">
-            <div class="collapse multi-collapse col-12" id="addReview">
+            <div class="collapse multi-collapse col-12" id="googleMaps">
                 <hr>
-                <form name="send" method="post" action='<c:url value="/allRestaurants/${restaurant.id}"/>'>
-                    <p style="max-height: 0px;">Oceń naszą restaurację:</p>
-                    <div class="row col-12">
-                        <div class="rate">
-                            <input type="radio" id="star5" name="rate" value="5">
-                            <label for="star5" title="Bosko">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4">
-                            <label for="star4" title="Dobrze">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3">
-                            <label for="star3" title="Średnio">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2">
-                            <label for="star2" title="Słabo">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1">
-                            <label for="star1" title="Dlaczego trujecie ludzi?">1 star</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="pros">Co Ci się podoba?</label>
-                        <textarea class="form-control" id="pros" name="pros" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="cons">Co moglibyśmy poprawić?</label>
-                        <textarea class="form-control" id="cons" name="cons" rows="3"></textarea>
-                    </div>
-                    <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" />"
-                           name="createDate">
-                    <input type="hidden" value="${restaurant.id}" name="restaurant">
-                    <input type="hidden" value="<sec:authentication property="principal.username" />" name="user">
-
-                    <input class="btn btn-info rounded-pill" type="submit" value="Dodaj recenzję" id="sendButton">
-                </form>
+                <div id="map" style="height: 400px; width: 100%;">
+                </div>
             </div>
+
+            <sec:authorize access="hasAuthority('USER')">
+                <div class="collapse multi-collapse col-12" id="addReview">
+                    <hr>
+                    <form name="send" method="post" action='<c:url value="/allRestaurants/${restaurant.id}"/>'>
+                        <p style="max-height: 0px;">Oceń naszą restaurację:</p>
+                        <div class="row col-12">
+                            <div class="rate">
+                                <input type="radio" id="star5" name="rate" value="5">
+                                <label for="star5" title="Bosko">5 stars</label>
+                                <input type="radio" id="star4" name="rate" value="4">
+                                <label for="star4" title="Dobrze">4 stars</label>
+                                <input type="radio" id="star3" name="rate" value="3">
+                                <label for="star3" title="Średnio">3 stars</label>
+                                <input type="radio" id="star2" name="rate" value="2">
+                                <label for="star2" title="Słabo">2 stars</label>
+                                <input type="radio" id="star1" name="rate" value="1">
+                                <label for="star1" title="Dlaczego trujecie ludzi?">1 star</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pros">Co Ci się podoba?</label>
+                            <textarea class="form-control" id="pros" name="pros" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="cons">Co moglibyśmy poprawić?</label>
+                            <textarea class="form-control" id="cons" name="cons" rows="3"></textarea>
+                        </div>
+                        <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" />"
+                               name="createDate">
+                        <input type="hidden" value="${restaurant.id}" name="restaurant">
+                        <input type="hidden" value="<sec:authentication property="principal.username" />" name="user">
+
+                        <input class="btn btn-info rounded-pill" type="submit" value="Dodaj recenzję" id="sendButton">
+                    </form>
+                </div>
 
 
             </sec:authorize>
