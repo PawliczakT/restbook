@@ -1,25 +1,11 @@
 package Guzcce.restbook.controller;
 
 
-import static java.util.Collections.singletonList;
-
-import Guzcce.restbook.model.Cuisine;
-import Guzcce.restbook.model.FileDB;
-import Guzcce.restbook.model.Restaurant;
-import Guzcce.restbook.model.RestaurantDto;
-import Guzcce.restbook.model.Review;
+import Guzcce.restbook.model.*;
 import Guzcce.restbook.service.CuisineService;
 import Guzcce.restbook.service.FileStorageService;
 import Guzcce.restbook.service.RestaurantService;
 import Guzcce.restbook.service.ReviewService;
-import java.io.IOException;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,8 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.IOException;
+import java.time.Instant;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+
+import static java.util.Collections.singletonList;
 
 @Controller
 public class RestaurantController {
