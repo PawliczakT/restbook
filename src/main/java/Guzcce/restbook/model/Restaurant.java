@@ -20,6 +20,7 @@ public class Restaurant {
     private String description;
     private String image;
     private float averageRate;
+    private int numberOfReviews;
     private boolean verified;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createDate;
@@ -45,7 +46,7 @@ public class Restaurant {
         this.images = images;
     }
 
-    public Restaurant(Long id, String name, String phone, String address, String description, String image, float averageRate, boolean verified, Date createDate, Set<FileDB> images) {
+    public Restaurant(Long id, String name, String phone, String address, String description, String image, float averageRate, int numberOfReviews, boolean verified, Date createDate, Set<FileDB> images) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -53,6 +54,7 @@ public class Restaurant {
         this.description = description;
         this.image = image;
         this.averageRate = averageRate;
+        this.numberOfReviews = numberOfReviews;
         this.verified = verified;
         this.createDate = createDate;
         this.images = images;
@@ -150,16 +152,11 @@ public class Restaurant {
         return images;
     }
 
-    public void setImages(Set<FileDB> images) {
-        this.images = images;
+    public void setImages(Set<FileDB> images) { this.images = images; }
 
-//        public String getFormattedDate() {
-//            return createDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-//
-//        }
+    public int getNumberOfReviews() { return numberOfReviews; }
 
-
-    }
+    public void setNumberOfReviews(int numberOfReviews) { this.numberOfReviews = numberOfReviews; }
 
     @Override
     public boolean equals(Object o) {
@@ -167,6 +164,7 @@ public class Restaurant {
         if (o == null || getClass() != o.getClass()) return false;
         Restaurant that = (Restaurant) o;
         return Float.compare(that.averageRate, averageRate) == 0 &&
+                numberOfReviews == that.numberOfReviews &&
                 verified == that.verified &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name) &&
@@ -181,5 +179,6 @@ public class Restaurant {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, phone, address, description, image, averageRate, verified, createDate, reviews, images);
-    }}
+        return Objects.hash(id, name, phone, address, description, image, averageRate, numberOfReviews, verified, createDate, reviews, images);
+    }
+}

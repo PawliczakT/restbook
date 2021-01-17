@@ -12,6 +12,9 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     @Query(value = "UPDATE restaurant SET average_rate = (SELECT AVG(review.rate) FROM review WHERE review.restaurant_id = ?1) WHERE id = ?1", nativeQuery = true)
     Float avgUpd(Long id);
 
+    @Query(value = "UPDATE restaurant SET number_of_reviews = (SELECT COUNT(review.id) FROM review WHERE review.restaurant_id = ?1) WHERE id = ?1", nativeQuery = true)
+    Integer numOfRevUpd(Long id);
+
     @Query(value = "SELECT AVG(review.rate) FROM review WHERE review.restaurant_id = ?1", nativeQuery = true)
     Float avg(Long id);
 
