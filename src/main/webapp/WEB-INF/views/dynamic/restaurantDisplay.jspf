@@ -75,7 +75,9 @@
                                 <i class="fas fa-star" style="color:gold"></i>
                                 <i class="fas fa-star" style="color:gold"></i>
                             </c:if>
+                            (${restaurant.numberOfReviews})
                             <br> <br>
+
                         </p>
                     </div>
                 </div>

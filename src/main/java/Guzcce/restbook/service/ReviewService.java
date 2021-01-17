@@ -30,9 +30,6 @@ public class ReviewService {
         return reviewRepository.findById(id);
     }
 
-    public Review saveReview(Review review) {
-
-        return reviewRepository.save(review);
-    }
+    public Review saveReview(Review review) { return reviewRepository.save(review); }
 
 }

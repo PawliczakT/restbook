@@ -53,6 +53,7 @@ public class RestaurantController {
     public RedirectView postAddNewReview(@PathVariable Long id, @ModelAttribute Review newReview) {
         reviewService.saveReview(newReview);
         restaurantService.avgUpd(id);
+        restaurantService.numOfRevUpd(id);
         return new RedirectView("/allRestaurants/{id}");
     }
 
