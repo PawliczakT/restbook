@@ -32,4 +32,15 @@ public class RestaurantService {
         return restaurantRepository.save(restaurant);
     }
 
+    public Float avgUpd(Long id){
+        return restaurantRepository.avgUpd(id);
+    }
+
+    public Float avg(Long id){
+        return restaurantRepository.avg(id);
+    }
+    public Float count(Long id){
+        return restaurantRepository.count(id);
+    }
+
 }
