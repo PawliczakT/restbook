@@ -8,10 +8,7 @@ import Guzcce.restbook.service.RestaurantService;
 import Guzcce.restbook.service.ReviewService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.IOException;
@@ -53,8 +50,9 @@ public class RestaurantController {
 
     //Save review in database
     @RequestMapping(value = {"/allRestaurants/{id}"}, method = RequestMethod.POST)
-    public RedirectView postAddNewReview(@ModelAttribute Review newReview) {
+    public RedirectView postAddNewReview(@PathVariable Long id, @ModelAttribute Review newReview) {
         reviewService.saveReview(newReview);
+        restaurantService.avgUpd(id);
         return new RedirectView("/allRestaurants/{id}");
     }
 
@@ -100,6 +98,15 @@ public class RestaurantController {
             return "restaurants/editRestaurant";
         } else return "restaurants/restaurantNotFound";
     }
+
+    @ResponseBody
+    @RequestMapping(value = {"/avg/{id}"}, method = RequestMethod.GET)
+    public Float avg (@PathVariable Long id) { return restaurantService.avg(id);}
+    @ResponseBody
+    @RequestMapping(value = {"/count/{id}"}, method = RequestMethod.GET)
+    public Float count (@PathVariable Long id) { return restaurantService.count(id);}
+
+
 
     private Restaurant toRestaurant(RestaurantDto restaurantDto) {
         try {
