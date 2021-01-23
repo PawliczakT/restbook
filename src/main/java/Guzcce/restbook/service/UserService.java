@@ -48,6 +48,7 @@ public class UserService implements UserDetailsService {
                 user.getEmail(),
                 user.getPassword(),
                 user.getReviews(),
+                user.getRestaurant(),
                 user.getRole());
         userRepository.save(editUser);
     }

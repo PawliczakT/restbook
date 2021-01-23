@@ -21,7 +21,7 @@ public class Cuisine {
             joinColumns = { @JoinColumn(name = "cuisine_id") },
             inverseJoinColumns = { @JoinColumn(name = "user_username") }
     )
-    Set<User> users = new HashSet<>();
+    private Set<User> users = new HashSet<>();
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
@@ -29,7 +29,7 @@ public class Cuisine {
             joinColumns = { @JoinColumn(name = "cuisine_id") },
             inverseJoinColumns = { @JoinColumn(name = "restaurant_id") }
     )
-    Set<Restaurant> restaurants = new HashSet<>();
+    private Set<Restaurant> restaurants = new HashSet<>();
 
 //    @ManyToMany(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "cuisine_user_id")
@@ -70,11 +70,27 @@ public class Cuisine {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cuisine cuisine = (Cuisine) o;
-        return Objects.equals(id, cuisine.id);
+        return id.equals(cuisine.id) && Objects.equals(name, cuisine.name) && Objects.equals(users, cuisine.users) && Objects.equals(restaurants, cuisine.restaurants);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, name, users, restaurants);
+    }
+
+    public Set<Restaurant> getRestaurants() {
+        return restaurants;
+    }
+
+    public void setRestaurants(Set<Restaurant> restaurants) {
+        this.restaurants = restaurants;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

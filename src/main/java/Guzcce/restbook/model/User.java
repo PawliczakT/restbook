@@ -18,6 +18,10 @@ public class User implements UserDetails {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Review> reviews = new HashSet<>();
 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
+    private Set<Restaurant> restaurant = new HashSet<>();
+
+
     @ManyToOne(targetEntity = Role.class)
     private Role role;
 
@@ -26,11 +30,12 @@ public class User implements UserDetails {
         return Collections.singletonList(role);
     }
 
-    public User(String username, String email, String password, Set<Review> reviews, Role role) {
+    public User(String username, String email, String password, Set<Review> reviews, Set<Restaurant> restaurant, Role role) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.reviews = reviews;
+        this.restaurant = restaurant;
         this.role = role;
     }
 
@@ -113,5 +118,13 @@ public class User implements UserDetails {
     @Override
     public int hashCode() {
         return Objects.hash(username, email, password, reviews, role);
+    }
+
+    public Set<Restaurant> getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Set<Restaurant> restaurant) {
+        this.restaurant = restaurant;
     }
 }

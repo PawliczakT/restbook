@@ -66,6 +66,11 @@
         <div style="min-height: 370px;" class="col- p-3">
             <h2 class="display-4">${restaurant.name}</h2>
 
+
+            <c:forEach items="${restaurant.cuisines}" var="cuisine">
+                <span class="badge badge-info">${cuisine.name}</span>
+            </c:forEach>
+
             <div class="post-subtitle">
                 <p class="lead">${restaurant.description}</div>
             <div class="post-subtitle">

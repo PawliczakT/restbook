@@ -2,10 +2,8 @@ package Guzcce.restbook.controller;
 
 
 import Guzcce.restbook.model.*;
-import Guzcce.restbook.service.CuisineService;
-import Guzcce.restbook.service.FileStorageService;
-import Guzcce.restbook.service.RestaurantService;
-import Guzcce.restbook.service.ReviewService;
+import Guzcce.restbook.service.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -87,6 +85,34 @@ public class RestaurantController {
         return new RedirectView("/");
     }
 
+    // Save edited Restaurant
+    @RequestMapping(value = {"/editRestaurantSave/{id}"}, method = RequestMethod.POST)
+    public RedirectView postEditRestaurant(@ModelAttribute RestaurantDto newRestaurantDto, @PathVariable("id") Long id) {
+        Optional<Restaurant> oldRestaurant = restaurantService.getRestaurant(id);
+        if (oldRestaurant.isPresent()) {
+            Restaurant restaurant = oldRestaurant.get();
+            Restaurant newRestaurant = toRestaurant(newRestaurantDto);
+
+            restaurant.setImage(newRestaurant.getImage());
+            restaurant.setName(newRestaurant.getName());
+            restaurant.setPhone(newRestaurant.getPhone());
+            restaurant.setAddress(newRestaurant.getAddress());
+            restaurant.setDescription(newRestaurant.getDescription());
+            restaurant.setCuisines(newRestaurantDto.getCuisines());
+
+            restaurantService.saveRestaurant(restaurant);
+
+            return new RedirectView("/allRestaurants/{id}");
+        } else return new RedirectView("restaurants/restaurantNotFound");
+    }
+
+    // Delete restaurant
+    @RequestMapping(value = {"/deleteRestaurant/{id}"}, method = RequestMethod.POST)
+    public RedirectView deleteRestaurant(@PathVariable("id") Long id) {
+        restaurantService.deleteRestaurant(id);
+        return new RedirectView("/");
+    }
+
 
     //Get view of editRestaurant page
     @RequestMapping(value = {"/editRestaurant/{id}"}, method = RequestMethod.GET)
@@ -102,18 +128,22 @@ public class RestaurantController {
 
     @ResponseBody
     @RequestMapping(value = {"/avg/{id}"}, method = RequestMethod.GET)
-    public Float avg (@PathVariable Long id) { return restaurantService.avg(id);}
+    public Float avg(@PathVariable Long id) {
+        return restaurantService.avg(id);
+    }
+
     @ResponseBody
     @RequestMapping(value = {"/count/{id}"}, method = RequestMethod.GET)
-    public Float count (@PathVariable Long id) { return restaurantService.count(id);}
-
+    public Float count(@PathVariable Long id) {
+        return restaurantService.count(id);
+    }
 
 
     private Restaurant toRestaurant(RestaurantDto restaurantDto) {
         try {
             FileDB storedFile = fileStorageService.store(restaurantDto.getImage());
             return new Restaurant(restaurantDto.getName(), restaurantDto.getPhone(), restaurantDto.getAddress(), restaurantDto.getDescription(),
-                    storedFile.getId(), Date.from(Instant.now()), new HashSet<>(singletonList(storedFile)));
+                    storedFile.getId(), Date.from(Instant.now()), new HashSet<>(singletonList(storedFile)), restaurantDto.getUser(), restaurantDto.getCuisines());
         } catch (IOException e) {
             throw new RuntimeException("Cos nie dziala", e);
         }

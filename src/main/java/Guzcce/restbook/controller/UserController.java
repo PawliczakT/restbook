@@ -1,8 +1,10 @@
 package Guzcce.restbook.controller;
 
 
+import Guzcce.restbook.model.Restaurant;
 import Guzcce.restbook.model.Review;
 import Guzcce.restbook.model.User;
+import Guzcce.restbook.service.RestaurantService;
 import Guzcce.restbook.service.ReviewService;
 import Guzcce.restbook.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,11 +24,13 @@ public class UserController {
 
     private final UserService userService;
     private final ReviewService reviewService;
+    private final RestaurantService restaurantService;
     private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService, ReviewService reviewService, PasswordEncoder passwordEncoder) {
+    public UserController(UserService userService, ReviewService reviewService, RestaurantService restaurantService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.reviewService = reviewService;
+        this.restaurantService = restaurantService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -37,6 +41,8 @@ public class UserController {
         if(user1.isPresent()){
             model.addAttribute("user", user1.get());
             List<Review> reviews = reviewService.findReviewsByUserEquals(user1.get());
+            List<Restaurant> restaurants = restaurantService.findRestaurantsByUserEqualsAndOrderByCreateDateDesc(user1.get());
+            model.addAttribute("restaurant", restaurants);
             model.addAttribute("review", reviews);
             return "user/user";
         }
