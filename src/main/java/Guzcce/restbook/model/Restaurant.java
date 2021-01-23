@@ -31,11 +31,18 @@ public class Restaurant {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "restaurant")
     private Set<FileDB> images = new HashSet<>();
 
-    public Restaurant(){
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
+
+    @ManyToMany
+    private Set<Cuisine> cuisines = new HashSet<>();
+
+
+    public Restaurant() {
 
     }
 
-    public Restaurant(String name, String phone, String address, String description, String image, Date createDate, Set<FileDB> images) {
+    public Restaurant(String name, String phone, String address, String description, String image, Date createDate, Set<FileDB> images, User user, Set<Cuisine> cuisines) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -44,9 +51,11 @@ public class Restaurant {
         this.image = image;
         this.createDate = createDate;
         this.images = images;
+        this.user = user;
+        this.cuisines = cuisines;
     }
 
-    public Restaurant(Long id, String name, String phone, String address, String description, String image, float averageRate, int numberOfReviews, boolean verified, Date createDate, Set<FileDB> images) {
+    public Restaurant(Long id, String name, String phone, String address, String description, String image, float averageRate, int numberOfReviews, boolean verified, Date createDate, Set<FileDB> images, User user) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -58,6 +67,7 @@ public class Restaurant {
         this.verified = verified;
         this.createDate = createDate;
         this.images = images;
+        this.user = user;
     }
 
     public float getAverageRate() {
@@ -152,11 +162,25 @@ public class Restaurant {
         return images;
     }
 
-    public void setImages(Set<FileDB> images) { this.images = images; }
+    public void setImages(Set<FileDB> images) {
+        this.images = images;
+    }
 
-    public int getNumberOfReviews() { return numberOfReviews; }
+    public User getUser() {
+        return user;
+    }
 
-    public void setNumberOfReviews(int numberOfReviews) { this.numberOfReviews = numberOfReviews; }
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public int getNumberOfReviews() {
+        return numberOfReviews;
+    }
+
+    public void setNumberOfReviews(int numberOfReviews) {
+        this.numberOfReviews = numberOfReviews;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -180,5 +204,13 @@ public class Restaurant {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, phone, address, description, image, averageRate, numberOfReviews, verified, createDate, reviews, images);
+    }
+
+    public Set<Cuisine> getCuisines() {
+        return cuisines;
+    }
+
+    public void setCuisines(Set<Cuisine> cuisines) {
+        this.cuisines = cuisines;
     }
 }

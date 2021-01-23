@@ -104,7 +104,8 @@
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title d-flex justify-content-center" id="addCuisineModalTitle">Rodzaje kuchni:</h5>
+                                            <h5 class="modal-title d-flex justify-content-center"
+                                                id="addCuisineModalTitle">Rodzaje kuchni:</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -115,7 +116,7 @@
                                                 <c:forEach items="${cuisine}" var="cuisine">
                                                     <div class="p-1 btn-group-toggle col-4" data-toggle="buttons">
                                                         <label class="p-2 btn btn-outline-info rounded-pill col-12">
-                                                            <input style="" type="checkbox"
+                                                            <input type="checkbox" name="cuisines" value="${cuisine.id}"
                                                                    autocomplete="off">${cuisine.name}
                                                         </label>
                                                     </div>
@@ -126,7 +127,9 @@
 
 
                                         <div class="modal-footer">
-                                            <button type="button" class="p-2 btn btn-info rounded-pill">Dodaj</button>
+                                            <button type="submit" class="p-2 btn btn-info rounded-pill"
+                                                    data-dismiss="modal">Dodaj
+                                            </button>
                                             <button type="button" class="p-2 btn btn-secondary rounded-pill"
                                                     data-dismiss="modal">Zamknij
                                             </button>
@@ -136,7 +139,10 @@
                             </div>
                         </div>
 
-                        <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" />" name="createDate">
+                        <input type="hidden" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" />"
+                               name="createDate">
+                        <input type="hidden" name="user" value="${userID}">
+
                         <input class="btn btn-info rounded-pill" type="submit" value="Dodaj restaurację"
                                id="sendButton">
                     </div>
@@ -156,7 +162,7 @@
 
 <script>
     // Add the following code if you want the name of the file appear on select
-    $(".custom-file-input").on("change", function() {
+    $(".custom-file-input").on("change", function () {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });

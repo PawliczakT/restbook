@@ -1,6 +1,7 @@
 package Guzcce.restbook.model;
 
 import java.util.Objects;
+import java.util.Set;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,17 +11,21 @@ public class RestaurantDto {
     private String phone;
     private String address;
     private String description;
+    private User user;
     private MultipartFile image;
+    private Set<Cuisine> cuisines;
 
     public RestaurantDto() {
     }
 
-    public RestaurantDto(String name, String phone, String address, String description, MultipartFile image) {
+    public RestaurantDto(String name, String phone, String address, String description, User user, MultipartFile image, Set<Cuisine> cuisines) {
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.description = description;
+        this.user = user;
         this.image = image;
+        this.cuisines = cuisines;
     }
 
     public String getName() {
@@ -63,24 +68,32 @@ public class RestaurantDto {
         this.image = image;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Set<Cuisine> getCuisines() {
+        return cuisines;
+    }
+
+    public void setCuisines(Set<Cuisine> cuisines) {
+        this.cuisines = cuisines;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         RestaurantDto that = (RestaurantDto) o;
-        return Objects.equals(name, that.name) &&
-                Objects.equals(phone, that.phone) &&
-                Objects.equals(address, that.address) &&
-                Objects.equals(description, that.description) &&
-                Objects.equals(image, that.image);
+        return Objects.equals(name, that.name) && Objects.equals(phone, that.phone) && Objects.equals(address, that.address) && Objects.equals(description, that.description) && Objects.equals(user, that.user) && Objects.equals(image, that.image) && Objects.equals(cuisines, that.cuisines);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, phone, address, description, image);
+        return Objects.hash(name, phone, address, description, user, image, cuisines);
     }
 }
