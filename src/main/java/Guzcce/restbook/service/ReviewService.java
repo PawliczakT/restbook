@@ -22,6 +22,10 @@ public class ReviewService {
         return reviewRepository.findReviewsByRestaurantEqualsOrderByCreateDateDesc(restaurant);
     }
 
+    public void deleteReviewsOfDeletedRestaurant(Long id) {
+        reviewRepository.deleteReviewsByRestaurantId(id);
+    }
+
     public List<Review> findReviewsByUserEquals(User user){
         return reviewRepository.findReviewsByUserEqualsOrderByCreateDateDesc(user);
     }

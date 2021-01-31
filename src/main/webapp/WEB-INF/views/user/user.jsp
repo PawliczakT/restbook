@@ -31,7 +31,8 @@
 
         <button class="btn btn-outline-info rounded-pill" type="button" data-toggle="collapse"
                 data-target="#allUserRestaurants"
-                aria-expanded="false" aria-controls="multiCollapseExample2">Edytuj swoją restaurację (${restaurant.size()})
+                aria-expanded="false" aria-controls="multiCollapseExample2">Edytuj swoją restaurację
+            (${restaurant.size()})
         </button>
 
     </div>
@@ -52,7 +53,8 @@
                                 height: 150px;
                                 width: 50%;
                                 background-size: cover;
-                                background-image: url('<c:url value="/files/${restaurant.image}"/>');" class="col-lg-4 p-1">
+                                background-image: url('<c:url value="/files/${restaurant.image}"/>');"
+                             class="col-lg-4 p-1">
                         </div>
 
                         <div style="height: 100%" class="col-12">
@@ -62,7 +64,9 @@
                         </div>
 
                         <div style="height: 100%" class="col-12">
-                            <h8 style="font-size: 100%" class="post-subtitle">${restaurant.description}<br> <br></h8>
+                            <div style="min-height: 115px;">
+                                <h8 style="font-size: 100%" class="post-subtitle">${restaurant.description}</h8>
+                            </div>
                             <div>
                                 <p>Ocena: ${restaurant.averageRate}
                                     <c:if test="${restaurant.averageRate > 0 && restaurant.averageRate <= 0.75}">
