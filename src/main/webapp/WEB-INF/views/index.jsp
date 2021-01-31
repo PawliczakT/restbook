@@ -18,7 +18,7 @@
 
             <!-- Pager -->
             <div class="clearfix col-10">
-                <a class="btn btn-primary float-right rounded-pill" href='<c:url value="/allRestaurants"/>'>Zobacz wszystkie &rarr;</a>
+                <a class="btn btn-primary float-right rounded-pill" href='<c:url value="/allRestaurants?id=50"/>'>Zobacz wszystkie &rarr;</a>
             </div>
 </div>
 
