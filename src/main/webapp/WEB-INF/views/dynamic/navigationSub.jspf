@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href='<c:url value="/allRestaurants"/>'>Restauracje</a>
+                    <a class="nav-link" href='<c:url value="/allRestaurants?id=50"/>'>Restauracje</a>
                 </li>
 
                 <sec:authorize access="hasAuthority('USER')">

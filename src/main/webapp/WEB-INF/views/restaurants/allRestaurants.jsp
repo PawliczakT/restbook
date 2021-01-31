@@ -22,12 +22,16 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav col-12 d-flex">
-                        <button class="nav-item p-3 btn btn-outline-info rounded-pill" type="button">Pokaż
-                            wszystkie
-                        </button>
+                        <a href="<c:url value='/allRestaurants?id=50'/>">
+                            <button class="nav-item p-3 btn btn-outline-info rounded-pill" type="button">Pokaż
+                                wszystkie
+                            </button>
+                        </a>
                         <c:forEach items="${top10Cuisines}" var="top10Cuisine">
-                            <button class="nav-item p-3 btn btn-outline-info rounded-pill"
-                                    type="button">${top10Cuisine.name}</button>
+                            <a href="<c:url value='/allRestaurants?id=${top10Cuisine.id}'/>">
+                                <button class="nav-item p-3 btn btn-outline-info rounded-pill"
+                                        type="button">${top10Cuisine.name}</button>
+                            </a>
                         </c:forEach>
                         <button type="button" class="nav-item p-3 btn btn-outline-info rounded-pill"
                                 data-toggle="modal"
@@ -72,10 +76,12 @@
                                         <div class="row col-12">
                                             <c:forEach items="${cuisine}" var="cuisine">
                                                 <div class="p-1 btn-group-toggle col-4" data-toggle="buttons">
-                                                    <label class="p-2 btn btn-outline-info rounded-pill col-12">
-                                                        <input type="checkbox"
-                                                               autocomplete="off">${cuisine.name}
-                                                    </label>
+                                                    <a href="<c:url value='/allRestaurants?id=${cuisine.id}'/>">
+                                                        <button type="button"
+                                                                class="p-2 btn btn-outline-info rounded-pill col-12">
+                                                                ${cuisine.name}
+                                                        </button>
+                                                    </a>
                                                 </div>
                                             </c:forEach>
 
