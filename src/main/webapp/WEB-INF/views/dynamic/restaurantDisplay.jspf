@@ -21,8 +21,9 @@
                     </h2>
                 </div>
 
-                <div style="height: 100%" class="col-12">
-                    <h8 style="font-size: 100%" class="post-subtitle">${restaurant.description}<br> <br></h8>
+                <div style="height: 100%;" class="col-12">
+                    <div style="min-height: 115px;"><h8 style="font-size: 100%;" class="post-subtitle">${restaurant.description}</h8>
+                    </div>
                     <div>
                         <p>Ocena: ${restaurant.averageRate}
                             <c:if test="${restaurant.averageRate > 0 && restaurant.averageRate <= 0.75}">

@@ -117,6 +117,7 @@ public class RestaurantController {
     // Delete restaurant
     @RequestMapping(value = {"/deleteRestaurant/{id}"}, method = RequestMethod.POST)
     public RedirectView deleteRestaurant(@PathVariable("id") Long id) {
+        reviewService.deleteReviewsOfDeletedRestaurant(id);
         restaurantService.deleteRestaurant(id);
         return new RedirectView("/");
     }
