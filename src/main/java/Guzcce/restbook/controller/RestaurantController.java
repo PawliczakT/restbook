@@ -3,6 +3,7 @@ package Guzcce.restbook.controller;
 
 import Guzcce.restbook.model.*;
 import Guzcce.restbook.service.*;
+import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,8 +59,14 @@ public class RestaurantController {
 
     //View of all added restaurants
     @RequestMapping(value = {"/allRestaurants"}, method = RequestMethod.GET)
-    public String viewAllRestaurants(Model model) {
-        List<Restaurant> list = restaurantService.getAllRestaurants();
+    public String viewAllRestaurants(Model model, @Param("id") Long id) {
+        List<Restaurant> list;
+        if (id == 50) {
+            list = restaurantService.getAllRestaurants();
+        } else {
+            Cuisine cuisine = cuisineService.getCuisineById(id);
+            list = restaurantService.getAllRestaurantByCuisineId(cuisine);
+        }
         List<Cuisine> cuisineList = cuisineService.getAllCuisines();
         List<Cuisine> top10CuisineList = cuisineService.findTop10();
         model.addAttribute("top10Cuisines", top10CuisineList);
@@ -67,6 +74,7 @@ public class RestaurantController {
         model.addAttribute("restaurant", list);
         return "restaurants/allRestaurants";
     }
+
 
     //Get view of addRestaurant page
     @RequestMapping(value = {"/addRestaurant"}, method = RequestMethod.GET)

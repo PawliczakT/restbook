@@ -15,7 +15,7 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
     List<Restaurant> findRestaurantsByUserEquals(User user);
 
-
+    List<Restaurant> findRestaurantsByCuisinesContainsOrderByAverageRateDesc(Cuisine cuisine);
 
     @Modifying
     @Transactional

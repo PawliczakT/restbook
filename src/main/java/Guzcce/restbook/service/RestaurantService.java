@@ -1,5 +1,6 @@
 package Guzcce.restbook.service;
 
+import Guzcce.restbook.model.Cuisine;
 import Guzcce.restbook.model.Restaurant;
 import Guzcce.restbook.model.User;
 import Guzcce.restbook.repository.RestaurantRepository;
@@ -38,6 +39,10 @@ public class RestaurantService {
 
     public void deleteRestaurant(Long id) {
         restaurantRepository.deleteRestaurantById(id);
+    }
+
+    public List<Restaurant> getAllRestaurantByCuisineId(Cuisine cuisine) {
+        return restaurantRepository.findRestaurantsByCuisinesContainsOrderByAverageRateDesc(cuisine);
     }
 
 

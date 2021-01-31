@@ -1,7 +1,6 @@
 package Guzcce.restbook.service;
 
 import Guzcce.restbook.model.Cuisine;
-import Guzcce.restbook.model.Restaurant;
 import Guzcce.restbook.repository.CuisineRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +16,10 @@ public class CuisineService {
 
     public List<Cuisine> getAllCuisines() {
         return cuisineRepository.findAll();
+    }
+
+    public Cuisine getCuisineById(Long id) {
+        return cuisineRepository.getOne(id);
     }
 
     public List<Cuisine> findTop10() {
