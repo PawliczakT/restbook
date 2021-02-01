@@ -27,7 +27,7 @@
                                     <div class="custom-file">
 
                                         <input type="file" class="custom-file-input" id="image" name="image">
-                                        <label class="custom-file-label" for="image">Wybierz plik</label>
+                                        <label class="custom-file-label" for="image">${imageFile.name}</label>
 
                                     </div>
                                 </form>
@@ -117,7 +117,7 @@
                                                     <div class="p-1 btn-group-toggle col-4" data-toggle="buttons">
                                                         <label class="p-2 btn btn-outline-info rounded-pill col-12">
                                                             <input type="checkbox" name="cuisines" value="${cuisine.id}"
-                                                                   autocomplete="off">${cuisine.name}
+                                                                   autocomplete="off" <c:if test="${restaurant.cuisines.contains(cuisine)}">checked</c:if>>${cuisine.name}
                                                         </label>
                                                     </div>
                                                 </c:forEach>
