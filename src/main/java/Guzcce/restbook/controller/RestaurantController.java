@@ -10,12 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.Instant;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static java.util.Collections.singletonList;
 
@@ -101,7 +99,9 @@ public class RestaurantController {
             Restaurant restaurant = oldRestaurant.get();
             Restaurant newRestaurant = toRestaurant(newRestaurantDto);
 
-            restaurant.setImage(newRestaurant.getImage());
+            if (!fileStorageService.getFile(newRestaurant.getImage()).getType().equals("application/octet-stream")) {
+                restaurant.setImage(newRestaurant.getImage());
+            }
             restaurant.setName(newRestaurant.getName());
             restaurant.setPhone(newRestaurant.getPhone());
             restaurant.setAddress(newRestaurant.getAddress());
@@ -126,11 +126,14 @@ public class RestaurantController {
     //Get view of editRestaurant page
     @RequestMapping(value = {"/editRestaurant/{id}"}, method = RequestMethod.GET)
     public String viewEditRestaurants(Model model, @PathVariable Long id) {
-        Optional<Restaurant> restaurant1 = restaurantService.getRestaurant(id);
-        if (restaurant1.isPresent()) {
+        Optional<Restaurant> restaurant = restaurantService.getRestaurant(id);
+        if (restaurant.isPresent()) {
+            FileDB imageFile = fileStorageService.getFile(restaurant.get().getImage());
+
             List<Cuisine> cuisineList = cuisineService.getAllCuisines();
+            model.addAttribute("imageFile", imageFile);
             model.addAttribute("cuisine", cuisineList);
-            model.addAttribute("restaurant", restaurant1.get());
+            model.addAttribute("restaurant", restaurant.get());
             return "restaurants/editRestaurant";
         } else return "restaurants/restaurantNotFound";
     }
