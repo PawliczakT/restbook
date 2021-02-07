@@ -21,8 +21,12 @@
                     </h2>
                 </div>
 
+                <c:forEach items="${restaurant.cuisines}" var="cuisine">
+                    <span class="badge badge-info">${cuisine.name}</span>
+                </c:forEach>
+
                 <div style="height: 100%;" class="col-12">
-                    <div style="min-height: 115px;"><h8 style="font-size: 100%;" class="post-subtitle">${restaurant.description}</h8>
+                    <div style="min-height: 100px;"><h8 style="font-size: 100%;" class="post-subtitle">${restaurant.description}</h8>
                     </div>
                     <div>
                         <p>Ocena: ${restaurant.averageRate}
