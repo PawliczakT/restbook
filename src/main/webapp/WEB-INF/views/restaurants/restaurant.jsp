@@ -57,9 +57,9 @@
         <div style="
                 margin: 10px;
                 float: left;
-                height: 350px;
+                height: 380px;
                 background-size: cover;
-                background-image: url('<c:url value="/files/${restaurant.image}"/>');" class="col-lg-6 p-1">
+                background-image: url('<c:url value="/files/${restaurant.image}"/>');" class="col-lg-6 p-1 rounded">
         </div>
 
 
